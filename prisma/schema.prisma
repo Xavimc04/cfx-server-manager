@@ -63,12 +63,16 @@ model Post {
     author    User     @relation(fields: [authorId], references: [id])
     tags      Tags[]
     comments  Comments[]
+
+    @@map("posts")
 }
 
 model Tags {
     id    String @id @default(cuid())
     name  String
     posts Post[]
+
+    @@map("post_tags")
 }
 
 model Comments {
@@ -78,4 +82,6 @@ model Comments {
     author    User    @relation(fields: [authorId], references: [id])
     postId    String
     post      Post    @relation(fields: [postId], references: [id])
+
+    @@map("post_comments")
 }
