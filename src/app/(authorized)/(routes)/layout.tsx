@@ -1,4 +1,5 @@
 import Navigator from "@/components/layouts/navigator"
+import { SessionProvider } from "next-auth/react"
 import { Fragment } from "react"
 
 export default function Layout({
@@ -7,8 +8,10 @@ export default function Layout({
     children: React.ReactNode
 }) {
     return <Fragment>
-        <Navigator />
+        <SessionProvider>
+            <Navigator />
 
-        { children }
+            { children }
+        </SessionProvider>
     </Fragment>
 }
