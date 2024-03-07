@@ -1,11 +1,12 @@
 import { auth } from "@/auth";
+import Link from "next/link";
 
 export default async function UserInformation() {
     const session = await auth();
 
-    if(!session) return <button>
+    if(!session) return <Link href="/auth/signin">
         Login
-    </button>
+    </Link>
 
     return <section className="flex items-center gap-4">
         { session?.user?.name }
