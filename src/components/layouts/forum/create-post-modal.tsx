@@ -41,7 +41,7 @@ export default function CreatePostModal() {
                         transition={{ duration: 0.3 }}
                         exit={{ opacity: 0, scale: 0.5 }}
                         action={ dispatch }
-                        className="flex flex-col gap-3 bg-white dark:bg-zinc-800 p-4 rounded-md shadow-lg w-96" 
+                        className="flex flex-col gap-3 bg-white dark:bg-zinc-800 p-4 rounded-md shadow-lg md:w-96" 
                         onClick={(e) => e.stopPropagation()}
                     >
                         {
