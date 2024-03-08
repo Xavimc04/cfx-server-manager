@@ -68,7 +68,8 @@ export async function getFilteredPosts({
                     name: true,
                     image: true
                 }
-            }
+            },
+            comments: true
         }
     });
 

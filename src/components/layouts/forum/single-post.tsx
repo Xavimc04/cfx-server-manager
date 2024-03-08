@@ -1,5 +1,5 @@
 import { Post } from "@/types/forum/_types";
-import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
+import ModeCommentOutlinedIcon from '@mui/icons-material/ModeCommentOutlined';
 import Link from "next/link";
 
 export default function SinglePost({
@@ -26,8 +26,10 @@ export default function SinglePost({
             </section>
 
             {/* @ Stats */}
-            <section>
-                <StarBorderOutlinedIcon />
+            <section className="flex items-center gap-3">
+                <ModeCommentOutlinedIcon />
+
+                { post.comments.length }
             </section>
         </article>
     </Link>
