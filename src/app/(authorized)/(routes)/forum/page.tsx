@@ -18,7 +18,7 @@ export default async function Page({
     const page = Number(searchParams?.page) || 1;
     const category = searchParams?.category || '';
 
-    return <main className="min-h-screen">
+    return <main className="min-h-screen flex flex-col gap-10">
         <section className="relative h-80 bg-gradient-to-b flex flex-col from-transparent via-30% to-white dark:to-zinc-900 to-95%">
             <Image 
                 src="/images/forum-header-wallpaper.jpg"
@@ -33,15 +33,17 @@ export default async function Page({
             <QueryFilter />
         </section>
 
-        <Suspense
-            key={ query + page + category }
-            fallback={ <ForumPostSkeleton /> }
-        >
-            <PostList 
-                query={query}
-                page={page}
-                category={category}
-            />
-        </Suspense>
+        <section className="px-10">
+            <Suspense
+                key={ query + page + category }
+                fallback={ <ForumPostSkeleton /> }
+            >
+                <PostList 
+                    query={query}
+                    page={page}
+                    category={category}
+                />
+            </Suspense>
+        </section>
     </main>
 }

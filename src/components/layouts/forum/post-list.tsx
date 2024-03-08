@@ -1,15 +1,15 @@
 import { getFilteredPosts } from "@/lib/data"
-import { PostList } from "@/types/forum/_types";
+import { Post, PostList } from "@/types/forum/_types";
+import SinglePost from "./single-post";
 
 export default async function PostList(queryParams : PostList) {
     const posts = await getFilteredPosts(queryParams);
 
-    return <section>
+    return <section className="flex flex-col gap-4 w-2/3">
         {
-            posts.map(post => <article key={post.id}>
-                <h2>{post.title}</h2>
-                <p>{post.content}</p>
-            </article>)
+            posts.map((post: Post) => {
+                return <SinglePost key={ post.id } post={ post } />
+            })
         }
     </section>
 }

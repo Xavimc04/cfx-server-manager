@@ -50,6 +50,15 @@ export async function getFilteredPosts({
             }
         },
         skip: (page - 1) * 10,
-        take: 10
+        take: 10,
+        include: {
+            author: {
+                select: {
+                    id: true,
+                    name: true,
+                    image: true
+                }
+            }
+        }
     });
 }
