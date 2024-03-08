@@ -1,5 +1,7 @@
 import Navigator from "@/components/layouts/navigator" 
+import { redirect } from 'next/navigation'
 import Image from "next/image"
+import { fetchPost } from "@/lib/data"
 
 export default async function Page({
     params
@@ -8,6 +10,16 @@ export default async function Page({
         slug: string
     }
 }) {  
+    if(!params.slug) return redirect('/forum')
+
+    const slug = Number(params.slug)
+
+    if(isNaN(slug)) return redirect('/forum')
+
+    const post = await fetchPost(slug)
+
+    if(!post) return redirect('/forum')
+
     return <main className="min-h-screen flex flex-col gap-10 mb-10">
         <section className="relative h-80 bg-gradient-to-b flex flex-col from-transparent via-30% to-zinc-900 to-95%">
             <Image 
