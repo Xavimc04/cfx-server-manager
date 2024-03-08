@@ -41,12 +41,12 @@ export default function CreatePostModal() {
                         transition={{ duration: 0.3 }}
                         exit={{ opacity: 0, scale: 0.5 }}
                         action={ dispatch }
-                        className="flex flex-col gap-3 bg-white p-4 rounded-md shadow-lg w-96" 
+                        className="flex flex-col gap-3 bg-white dark:bg-zinc-800 p-4 rounded-md shadow-lg w-96" 
                         onClick={(e) => e.stopPropagation()}
                     >
                         {
-                            state && <p>
-                                { state }
+                            state && <p className="text-sm text-red-500">
+                                * { state }
                             </p>
                         }
 
@@ -68,7 +68,12 @@ export default function CreatePostModal() {
                             <Input name="content" placeholder="..." />
                         </Label> 
 
-                        <button type="submit">Crear</button>
+                        <button 
+                            className="bg-indigo-300 border border-indigo-500 text-indigo-500 p-2 rounded-md hover:bg-indigo-500 hover:text-indigo-300 transition-all duration-300"
+                            type="submit"
+                        >
+                            Crear
+                        </button>
                     </motion.form>
                 </motion.section>
             }
