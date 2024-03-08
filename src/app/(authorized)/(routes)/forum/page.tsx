@@ -33,17 +33,15 @@ export default async function Page({
             <QueryFilter />
         </section>
 
-        <section className="px-10">
-            <Suspense
-                key={ query + page + category }
-                fallback={ <ForumPostSkeleton /> }
-            >
-                <PostList 
-                    query={query}
-                    page={page}
-                    category={category}
-                />
-            </Suspense>
-        </section>
+        <Suspense
+            key={ query + page + category }
+            fallback={ <ForumPostSkeleton /> }
+        >
+            <PostList 
+                query={query}
+                page={page}
+                category={category}
+            />
+        </Suspense>
     </main>
 }
