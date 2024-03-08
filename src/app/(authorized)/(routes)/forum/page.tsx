@@ -1,9 +1,7 @@
 import PostList from "@/components/layouts/forum/post-list";
 import QueryFilter from "@/components/layouts/forum/query-filter";
-import Navigator from "@/components/layouts/navigator";
-import Pagination from "@/components/layouts/pagination";
-import ForumPostSkeleton from "@/components/ui/skeletons/forum-post-skeleton"; 
-import { getFilteredPosts } from "@/lib/data";
+import Navigator from "@/components/layouts/navigator"; 
+import ForumPostSkeleton from "@/components/ui/skeletons/forum-post-skeleton";  
 import Image from "next/image";
 import { Suspense } from "react";
 
@@ -17,17 +15,7 @@ export default async function Page({
     }
 }) {
     const query = searchParams?.query || '';
-    const page = Number(searchParams?.page) || 1;
-    const category = searchParams?.category || '';
-
-    const {
-        data,
-        totalPages
-    } = await getFilteredPosts({
-        query, 
-        page, 
-        category
-    });
+    const page = Number(searchParams?.page) || 1; 
 
     return <main className="min-h-screen flex flex-col gap-10 mb-10">
         <section className="relative h-80 bg-gradient-to-b flex flex-col from-transparent via-30% to-zinc-900 to-95%">
@@ -45,17 +33,13 @@ export default async function Page({
         </section>
 
         <Suspense
-            key={ query + page + category }
+            key={ query + page }
             fallback={ <ForumPostSkeleton /> }
         >
             <PostList 
-                data={ data }
+                query={ query }
+                page={ page }
             />
         </Suspense>
-
-        <Pagination 
-            currentPage={ page }
-            totalPages={ totalPages }
-        />
     </main>
 }

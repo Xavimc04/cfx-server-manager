@@ -11,5 +11,4 @@ export interface Post {
 export interface PostList {
     query: string;
     page: BigInt | Number | any;
-    category: String;
 }

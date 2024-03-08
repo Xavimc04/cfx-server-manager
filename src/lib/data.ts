@@ -51,8 +51,7 @@ export async function countPosts(query: string) {
 
 export async function getFilteredPosts({
     query,
-    page,
-    category
+    page
 } : PostList) {
     const data = await prisma.post.findMany({
         where: {
@@ -79,4 +78,12 @@ export async function getFilteredPosts({
         data,
         totalPages: Math.ceil(total / POST_PER_PAGE) || 1
     }
+}
+
+export async function fetchPost(id: number) {
+    return await prisma.post.findUnique({
+        where: {
+            id
+        }
+    });
 }
