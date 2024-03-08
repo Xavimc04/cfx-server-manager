@@ -93,7 +93,7 @@ export default function CreatePostModal() {
                                     tags.map((tag, index) => (
                                         <span 
                                             key={ index }
-                                            className="bg-green-200 border border-green-500 text-green-500 p-1 rounded-md"
+                                            className="bg-green-200 border border-green-500 text-green-500 px-2 text-xs rounded-md"
                                         >
                                             { tag }
                                         </span>
