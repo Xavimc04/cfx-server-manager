@@ -4,6 +4,7 @@ import { registerForumPost } from "@/lib/data";
 import { useSession } from "next-auth/react";
 import { Fragment, useState } from "react";
 import { useFormState } from "react-dom";
+import AddIcon from '@mui/icons-material/Add';
 
 export default function CreatePostModal() {
     const [display, handleDisplay] = useState(false);
@@ -11,11 +12,14 @@ export default function CreatePostModal() {
     
     const { data: session } = useSession();
 
-    if (!session) return "No tienes permisos para crear un post";
+    if (!session) return;
 
     return <Fragment>
-        <button onClick={() => handleDisplay(true)}>
-            Crear post
+        <button 
+            className="bg-indigo-300 border border-indigo-500 text-indigo-500 p-2 rounded-md hover:bg-indigo-500 hover:text-indigo-300 transition-all duration-300"
+            onClick={() => handleDisplay(true)}
+        >
+            <AddIcon />
         </button>
 
         {
