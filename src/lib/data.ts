@@ -39,6 +39,16 @@ export async function registerForumPost(prevState: any, data: FormData) {
     }
 }
 
+export async function countPosts(query: string) {
+    return await prisma.post.count({
+        where: {
+            title: {
+                contains: query
+            }
+        }
+    });
+}
+
 export async function getFilteredPosts({
     query,
     page,
@@ -63,8 +73,10 @@ export async function getFilteredPosts({
         }
     });
 
+    const total = await countPosts(query);
+
     return {
         data,
-        totalPages: Math.ceil(data.length / POST_PER_PAGE) || 1
+        totalPages: Math.ceil(total / POST_PER_PAGE) || 1
     }
 }
