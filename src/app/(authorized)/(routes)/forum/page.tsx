@@ -1,7 +1,9 @@
 import PostList from "@/components/layouts/forum/post-list";
 import QueryFilter from "@/components/layouts/forum/query-filter";
 import Navigator from "@/components/layouts/navigator";
+import Pagination from "@/components/layouts/pagination";
 import ForumPostSkeleton from "@/components/ui/skeletons/forum-post-skeleton";
+import { getPostTotalPages } from "@/lib/data";
 import Image from "next/image";
 import { Suspense } from "react";
 
@@ -18,7 +20,9 @@ export default async function Page({
     const page = Number(searchParams?.page) || 1;
     const category = searchParams?.category || '';
 
-    return <main className="min-h-screen flex flex-col gap-10">
+    const totalPages = await getPostTotalPages();
+
+    return <main className="min-h-screen flex flex-col gap-10 mb-10">
         <section className="relative h-80 bg-gradient-to-b flex flex-col from-transparent via-30% to-zinc-900 to-95%">
             <Image 
                 src="/images/forum-header-wallpaper.jpg"
@@ -43,5 +47,10 @@ export default async function Page({
                 category={category}
             />
         </Suspense>
+
+        <Pagination 
+            currentPage={ page }
+            totalPages={ totalPages }
+        />
     </main>
 }

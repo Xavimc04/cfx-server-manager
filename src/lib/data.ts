@@ -3,6 +3,7 @@
 import { z } from "zod";
 import prisma from "./prisma";
 import { PostList } from "@/types/forum/_types";
+import { POST_PER_PAGE } from "./constants";
 
 export async function registerForumPost(prevState: any, data: FormData) {
     try {
@@ -38,6 +39,11 @@ export async function registerForumPost(prevState: any, data: FormData) {
     }
 }
 
+export async function getPostTotalPages() {
+    const totalPosts = await prisma.post.count();
+    return Math.ceil(totalPosts / POST_PER_PAGE) || 1;
+}
+
 export async function getFilteredPosts({
     query,
     page,
@@ -49,8 +55,8 @@ export async function getFilteredPosts({
                 contains: query
             }
         },
-        skip: (page - 1) * 10,
-        take: 10,
+        skip: (page - 1) * POST_PER_PAGE,
+        take: POST_PER_PAGE,
         include: {
             author: {
                 select: {
