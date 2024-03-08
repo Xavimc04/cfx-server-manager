@@ -2,6 +2,7 @@
 
 import { z } from "zod";
 import prisma from "./prisma";
+import { PostList } from "@/types/forum/_types";
 
 export async function registerForumPost(prevState: any, data: FormData) {
     try {
@@ -37,21 +38,18 @@ export async function registerForumPost(prevState: any, data: FormData) {
     }
 }
 
-export async function getFilteredPosts() {
+export async function getFilteredPosts({
+    query,
+    page,
+    category
+} : PostList) {
     return await prisma.post.findMany({
-        orderBy: {
-            createdAt: "desc"
+        where: {
+            title: {
+                contains: query
+            }
         },
-        select: {
-            id: true,
-            title: true,
-            content: true,
-            createdAt: true,
-            comments: {
-                select: {
-                    id: true
-                }
-            },
-        }
+        skip: (page - 1) * 10,
+        take: 10
     });
 }

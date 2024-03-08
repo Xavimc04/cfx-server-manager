@@ -5,3 +5,9 @@ export interface Post {
     published: Boolean; 
     createdAt: Date; 
 }
+
+export interface PostList {
+    query: string;
+    page: BigInt | Number | any;
+    category: String;
+}
