@@ -19,7 +19,7 @@ export default async function Page({
     const category = searchParams?.category || '';
 
     return <main className="min-h-screen flex flex-col gap-10">
-        <section className="relative h-80 bg-gradient-to-b flex flex-col from-transparent via-30% to-white dark:to-zinc-900 to-95%">
+        <section className="relative h-80 bg-gradient-to-b flex flex-col from-transparent via-30% to-zinc-900 to-95%">
             <Image 
                 src="/images/forum-header-wallpaper.jpg"
                 alt="Background image"

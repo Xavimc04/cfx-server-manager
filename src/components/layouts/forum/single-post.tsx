@@ -6,7 +6,7 @@ export default function SinglePost({
 } : {
     post: Post
 }) {
-    return <article className="border p-3 rounded flex items-center gap-4">
+    return <article className="border border-zinc-700 p-3 rounded flex items-center gap-4">
         {/* @ Image */}
         <img 
             src={ post.author.image }

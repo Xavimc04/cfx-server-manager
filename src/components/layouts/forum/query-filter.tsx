@@ -23,7 +23,7 @@ export default function QueryFilter() {
 
     return <section className="absolute bottom-0 self-center flex items-center gap-4 w-full px-5 lg:px-0 lg:w-1/2 xl:w-2/4">
         <input 
-            className="bg-gray-50 dark:bg-zinc-800 px-4 border dark:border-zinc-700 shadow-lg flex-1 py-2 rounded-md focus:outline-none focus:ring-0"
+            className="bg-zinc-800 px-4 border border-zinc-700 shadow-lg flex-1 py-2 rounded-md focus:outline-none focus:ring-0"
             placeholder="Buscar..."
             onChange={(e) => handleSearch(e.target.value)}
             defaultValue={searchParams.get('query')?.toString()}

@@ -12,6 +12,8 @@ import Input from "@/components/ui/input";
 export default function CreatePostModal() {
     const [display, handleDisplay] = useState(false);
     const [state, dispatch] = useFormState(registerForumPost, undefined); 
+    const [tags, setTags] = useState<string[]>([]);
+    const [tagInput, setTagInput] = useState<string>("");
     
     const { data: session } = useSession();
 
@@ -41,9 +43,17 @@ export default function CreatePostModal() {
                         transition={{ duration: 0.3 }}
                         exit={{ opacity: 0, scale: 0.5 }}
                         action={ dispatch }
-                        className="flex flex-col gap-3 bg-white dark:bg-zinc-800 p-4 rounded-md shadow-lg md:w-96" 
+                        className="flex flex-col gap-3 bg-zinc-800 p-4 rounded-md shadow-lg md:w-1/3" 
                         onClick={(e) => e.stopPropagation()}
                     >
+                        <h2 className="text-2xl poppins">
+                            Crear un post
+                        </h2>
+
+                        <small className="text-gray-400">
+                            Hola, { session?.user?.name } ¿Qué quieres compartir hoy?
+                        </small>
+
                         {
                             state && <p className="text-sm text-red-500">
                                 * { state }
@@ -64,19 +74,65 @@ export default function CreatePostModal() {
                             label="Contenido"
                             htmlFor="content"
                             required
+                        > 
+                            <textarea 
+                                className="px-4 text-sm py-2.5 flex items-center gap-3 rounded-lg focus:outline-none focus:ring-0 bg-black/30 border border-gray-600 focus:border-indigo-500"
+                                name="content" 
+                            ></textarea>
+                        </Label>
+
+                        <Label
+                            label="Tags"
+                            htmlFor="tags"
+                            required
                         >
-                            <Input name="content" placeholder="..." />
-                        </Label> 
+                            <div
+                                className="text-sm px-2.5 py-2.5 flex flex-wrap items-center gap-3 rounded-lg focus:outline-none focus:ring-0 bg-black/30 border border-gray-600 focus:border-indigo-500"
+                            >
+                                {
+                                    tags.map((tag, index) => (
+                                        <span 
+                                            key={ index }
+                                            className="bg-green-200 border border-green-500 text-green-500 p-1 rounded-md"
+                                        >
+                                            { tag }
+                                        </span>
+                                    ))
+                                }
+
+                                <input 
+                                    type="text"
+                                    name="tags"
+                                    value={ tagInput }
+                                    onChange={(e) => setTagInput(e.target.value)}
+                                    className="flex-1 focus:outline-none focus:ring-0 bg-transparent"
+                                    onKeyDown={(e) => {
+                                        if (e.key === "Enter") {
+                                            e.preventDefault();
+
+                                            if (!tagInput || tagInput.length == 0) return;
+
+                                            if(tags.includes(tagInput)) return;
+
+                                            if(tags.length >= 5) return;
+
+                                            setTags([...tags, tagInput]);
+                                            setTagInput("");
+                                        }
+                                    }}
+                                />
+                            </div>
+                        </Label>
 
                         <button 
                             className="bg-indigo-300 border border-indigo-500 text-indigo-500 p-2 rounded-md hover:bg-indigo-500 hover:text-indigo-300 transition-all duration-300"
                             type="submit"
                         >
-                            Crear
+                            Publicar
                         </button>
                     </motion.form>
                 </motion.section>
             }
         </AnimatePresence>
     </Fragment>
-} 
+}
