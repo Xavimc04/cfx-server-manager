@@ -3,7 +3,7 @@ import { ReplyOutlined } from "@mui/icons-material"
 import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
 
 export function AuthorInformation(author: Author) {
-    return author && <section className="flex items-center gap-4 w-full mb-7">
+    return author && <section className="absolute -top-24 self-center flex items-center gap-4 w-full px-5 lg:px-0 lg:w-1/2 xl:w-2/4">
         {/* @ Author image */}
         <img 
             src={ author.image || '' }

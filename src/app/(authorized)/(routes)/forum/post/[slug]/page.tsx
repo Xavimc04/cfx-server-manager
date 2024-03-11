@@ -1,9 +1,9 @@
-import Navigator from "@/components/layouts/navigator" 
-import { redirect } from 'next/navigation'
-import Image from "next/image"
+import { redirect } from 'next/navigation' 
 import SinglePost from "@/components/layouts/forum/post/single-post"
 import { Suspense } from "react"
 import SinglePostSkeleton from "@/components/ui/skeletons/single-post.skeleton"
+import Image from 'next/image'
+import Navigator from '@/components/layouts/navigator'
 
 export default async function Page({
     params
@@ -28,16 +28,18 @@ export default async function Page({
                 objectFit="cover"
             />
 
-            <Navigator /> 
+            <Navigator />
         </section>  
 
-        <Suspense
-            key={ slug }
-            fallback={ <SinglePostSkeleton /> }
-        >
-            <SinglePost
-                slug={ slug }
-            />
-        </Suspense>
-    </main>
+        <div className='flex'>
+            <Suspense
+                key={ slug }
+                fallback={ <SinglePostSkeleton /> }
+            >
+                <SinglePost
+                    slug={ slug }
+                />
+            </Suspense>
+        </div>
+    </main> 
 }

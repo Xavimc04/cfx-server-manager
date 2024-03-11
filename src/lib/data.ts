@@ -67,7 +67,8 @@ export async function getFilteredPosts({
             author: {
                 select: { 
                     name: true,
-                    image: true
+                    image: true,
+                    createdAt: true
                 }
             },
             comments: true
