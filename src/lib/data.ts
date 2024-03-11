@@ -35,6 +35,8 @@ export async function registerForumPost(prevState: any, data: FormData) {
     
         return "Post registrado";
     } catch (error) {
+        console.error((error as Error).message);
+
         return "Error desconocido";
     }
 }

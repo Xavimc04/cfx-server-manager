@@ -32,5 +32,15 @@ export default async function Page({
 
             <Navigator /> 
         </section> 
+        
+        <section className="w-1/2 self-center flex flex-col gap-4">
+            <h1 className="text-4xl poppins">
+                { post.title }
+            </h1>
+
+            <p className="text-gray-500">
+                { post.content }
+            </p>
+        </section>
     </main>
 }
