@@ -5,8 +5,16 @@ export interface Post {
     content: String;
     published: Boolean; 
     createdAt: Date; 
-    author: any;
+    author: Author;
     comments: Comments[];
+}
+
+export interface Author {
+    id?: Number | BigInt | any;
+    name: string | null;
+    email?: String;
+    image: string | null;
+    createdAt: Date;
 }
 
 export interface PostList {

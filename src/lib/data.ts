@@ -65,8 +65,7 @@ export async function getFilteredPosts({
         take: POST_PER_PAGE,
         include: {
             author: {
-                select: {
-                    id: true,
+                select: { 
                     name: true,
                     image: true
                 }
@@ -87,6 +86,16 @@ export async function fetchPost(id: number) {
     return await prisma.post.findUnique({
         where: {
             id
+        },
+        include: {
+            author: {
+                select: { 
+                    name: true,
+                    image: true,
+                    createdAt: true
+                }
+            }, 
+            comments: true
         }
     });
 }
