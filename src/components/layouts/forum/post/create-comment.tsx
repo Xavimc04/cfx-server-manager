@@ -3,14 +3,14 @@
 import { commentOnPost } from "@/lib/data";
 import { SendAndArchiveOutlined } from "@mui/icons-material";
 import { AnimatePresence, motion } from "framer-motion";
-import { useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";  
 import { useFormState } from "react-dom";
 
 export default function CreateComment({
     postId
 } : {
     postId: number
-}) {
+}) {  
     const [state, dispatch] = useFormState(commentOnPost, undefined)
     const { data: session } = useSession();
 
@@ -32,7 +32,7 @@ export default function CreateComment({
                 Por favor, antes de escribir un comentario piensa en las personas que lo van a leer.
             </p>
 
-            <form
+            <form 
                 className="mt-5 w-full flex items-center flex-wrap gap-4"
                 action={ dispatch }
             >
@@ -48,10 +48,11 @@ export default function CreateComment({
                 <input 
                     className="bg-zinc-800 px-4 border border-zinc-700 shadow-lg flex-1 py-2 rounded-md focus:outline-none focus:ring-0"
                     placeholder="..."
-                    name="content"
+                    name="content" 
                 />
 
                 <button 
+                    type="submit"
                     className="bg-indigo-300 border border-indigo-500 text-indigo-500 p-2 rounded-md hover:bg-indigo-500 hover:text-indigo-300 transition-all duration-300"
                 >
                     <SendAndArchiveOutlined />

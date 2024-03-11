@@ -4,6 +4,7 @@ import { z } from "zod";
 import prisma from "./prisma";
 import { PostList } from "@/types/forum/_types";
 import { POST_PER_PAGE } from "./constants";
+import { revalidatePath } from "next/cache";
 
 export async function registerForumPost(prevState: any, data: FormData) {
     try {
@@ -32,6 +33,8 @@ export async function registerForumPost(prevState: any, data: FormData) {
                 content: post.data.content
             }
         });
+
+        revalidatePath("/forum");
     
         return "Post registrado";
     } catch (error) {
@@ -138,6 +141,8 @@ export async function commentOnPost(prevState: any, data: FormData) {
                 content: comment.data.content
             }
         });
+
+        revalidatePath(`/forum/post/${postId}`);
     
         return "Comentario registrado";
     } catch (error) {
