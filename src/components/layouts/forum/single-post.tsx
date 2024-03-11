@@ -13,8 +13,8 @@ export default function SinglePost({
         <article className="border border-zinc-700 p-3 rounded flex items-center gap-4">
             {/* @ Image */}
             <img 
-                src={ post.author.image }
-                alt={ post.author.name }
+                src={ post.author.image || '' }
+                alt={ post.author.name || '' }
                 className="w-10 h-10 rounded-md"
             />
             
