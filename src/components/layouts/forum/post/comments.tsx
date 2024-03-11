@@ -8,7 +8,7 @@ export default function Comments({
     comments: Comment[],
     postId: number
 }) {
-    return <section className="self-center flex flex-col gap-4 px-5 w-full lg:px-0 lg:w-1/2 xl:w-2/4 mt-10">
+    return <section className="self-center flex flex-col px-5 w-full lg:px-0 lg:w-1/2 xl:w-2/4 mt-10">
         {
             comments.map((comment: Comment) => {
                 return <article key={ comment.id } className="flex flex-col">
@@ -35,6 +35,12 @@ export default function Comments({
                     </p>
                 </article>
             })
+        }
+
+        {
+            comments.length === 0 && <p className="text-red-500">
+                * No hay comentarios asociados al post
+            </p>
         }
 
         <CreateComment 
