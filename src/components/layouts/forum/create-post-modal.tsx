@@ -60,7 +60,7 @@ export default function CreatePostModal() {
                             </p>
                         }
 
-                        <input type="hidden" name="authorId" value={ 1 } />
+                        <input type="hidden" name="authorId" defaultValue={ session?.user?.id } />
 
                         <Label
                             label="Título"

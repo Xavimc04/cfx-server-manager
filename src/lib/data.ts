@@ -110,3 +110,39 @@ export async function fetchPost(id: number) {
         }
     });
 }
+
+export async function commentOnPost(prevState: any, data: FormData) {
+    try {
+        const authorId = Number(data.get("authorId"));
+        const postId = Number(data.get("postId"));
+        const content = data.get("content") as string;
+
+        if (!authorId || !postId || !content) return "Todos los campos deben ser completados";
+
+        const commentSchema = z.object({
+            authorId: z.number(),
+            postId: z.number(),
+            content: z.string()
+        });
+    
+        const comment = commentSchema.safeParse({
+            authorId, postId, content
+        });
+    
+        if (!comment.success) return "Todos los campos deben ser completados";
+    
+        await prisma.comments.create({
+            data: {
+                authorId: comment.data.authorId,
+                postId: comment.data.postId,
+                content: comment.data.content
+            }
+        });
+    
+        return "Comentario registrado";
+    } catch (error) {
+        console.error((error as Error).message);
+
+        return "Error desconocido";
+    }
+}

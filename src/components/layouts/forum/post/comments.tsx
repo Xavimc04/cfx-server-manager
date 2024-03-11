@@ -1,11 +1,14 @@
 import { Comment } from "@/types/forum/_types"
+import CreateComment from "./create-comment"
 
 export default function Comments({
-    comments
+    comments,
+    postId
 } : {
-    comments: Comment[]
+    comments: Comment[],
+    postId: number
 }) {
-    return <section className="self-center flex flex-col gap-4 px-5 w-full lg:px-0 lg:w-1/2 xl:w-2/4 my-10">
+    return <section className="self-center flex flex-col gap-4 px-5 w-full lg:px-0 lg:w-1/2 xl:w-2/4 mt-10">
         {
             comments.map((comment: Comment) => {
                 return <article key={ comment.id } className="flex flex-col">
@@ -33,5 +36,9 @@ export default function Comments({
                 </article>
             })
         }
+
+        <CreateComment 
+            postId={ postId }
+        />
     </section>
 }

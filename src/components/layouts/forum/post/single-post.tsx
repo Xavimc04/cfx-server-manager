@@ -12,7 +12,7 @@ export default async function SinglePost({
 
     if(!post) return redirect('/forum')
 
-    return <section className="relative flex flex-col items-center">
+    return <section className="relative flex flex-col items-center w-full">
         <AuthorInformation {...post.author} />
         
         <article className="flex flex-col gap-4 self-center px-5 w-full lg:px-0 lg:w-1/2 xl:w-2/4">
@@ -29,6 +29,9 @@ export default async function SinglePost({
             </p>
         </article>
 
-        <Comments comments={ post.comments } />
+        <Comments 
+            comments={ post.comments } 
+            postId={ post.id }
+        />
     </section>
 }
