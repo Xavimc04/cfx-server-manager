@@ -6,7 +6,7 @@ export interface Post {
     published: Boolean; 
     createdAt: Date; 
     author: Author;
-    comments: Comments[];
+    comments: Comment[];
 }
 
 export interface Author {
@@ -22,10 +22,11 @@ export interface PostList {
     page: BigInt | Number | any;
 }
 
-export interface Comments {
+export interface Comment {
     id: Number | BigInt | any;
     content: String;
     authorId: Number | BigInt | any;
     createdAt: Date;
     postId: Number | BigInt | any;
+    author: Author;
 }

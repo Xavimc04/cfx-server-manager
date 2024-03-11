@@ -96,7 +96,17 @@ export async function fetchPost(id: number) {
                     createdAt: true
                 }
             }, 
-            comments: true
+            comments: {
+                include: {
+                    author: {
+                        select: {
+                            name: true,
+                            image: true,
+                            createdAt: true
+                        }
+                    }
+                }
+            }
         }
     });
 }
