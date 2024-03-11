@@ -1,6 +1,6 @@
 import { fetchPost } from "@/lib/data"
 import { redirect } from "next/navigation"
-import { AuthorInformation } from "./post-author-information" 
+import AuthorInformation from "./post-author-information"
 import Comments from "./comments"
 
 export default async function SinglePost({
@@ -13,7 +13,10 @@ export default async function SinglePost({
     if(!post) return redirect('/forum')
 
     return <section className="relative flex flex-col items-center w-full">
-        <AuthorInformation {...post.author} />
+        <AuthorInformation 
+            author={ post.author }
+            postId={ post.id }
+        />
         
         <article className="flex flex-col gap-4 self-center px-5 w-full lg:px-0 lg:w-1/2 xl:w-2/4">
             <h1 className="text-4xl poppins">

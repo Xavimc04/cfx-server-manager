@@ -1,8 +1,20 @@
-import { Author } from "@/types/forum/_types"; 
-import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
+import { Author } from "@/types/forum/_types";
 import Link from "next/link";
+import SavePost from "./save-post";
+import { isPostSaved } from "@/lib/data";
+import { auth } from "@/auth";
+import { Suspense } from "react";
 
-export function AuthorInformation(author: Author) {
+export default async function AuthorInformation({
+    author,
+    postId
+} : {
+    author: Author,
+    postId: number
+}) { 
+    const session = await auth();
+    const isSaved = await isPostSaved(Number(session?.user?.id), postId);
+
     return author && <section className="absolute -top-24 self-center flex items-center gap-4 w-full px-5 lg:px-0 lg:w-1/2 xl:w-2/4">
         {/* @ Author image */}
         <Link
@@ -31,10 +43,9 @@ export function AuthorInformation(author: Author) {
         </section> 
 
         {/* @ Links */}
-        <section className="flex gap-4 items-center"> 
-            <button className="rounded border opacity-60 p-2 flex items-center justify-center hover:opacity-100 hover:border-indigo-500 hover:text-indigo-500 transition-all">
-                <PersonAddAltOutlinedIcon />
-            </button>
-        </section>
+        <SavePost 
+            postId={ postId }
+            isSaved={ isSaved }
+        />
     </section>
 }

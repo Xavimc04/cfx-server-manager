@@ -47,8 +47,8 @@ model User {
     sessions      Session[]
     posts         Post[]
     comments      Comments[]
-    starredPosts  StarredPosts[]
     likedPosts    LikedPosts[]
+    savedPosts    SavedPosts[]
 }
 
 model VerificationToken {
@@ -71,8 +71,8 @@ model Post {
     author    User     @relation(fields: [authorId], references: [id])
     tags      Tags[]
     comments  Comments[]
-    stars     StarredPosts[]
     likes     LikedPosts[]
+    saves     SavedPosts[]
 
     @@map("posts")
 }
@@ -100,18 +100,6 @@ model Comments {
     @@map("post_comments")
 }
 
-model StarredPosts {
-    id        Int      @id @default(autoincrement())
-    userId    Int
-    postId    Int
-    post      Post     @relation(fields: [postId], references: [id])
-    user      User     @relation(fields: [userId], references: [id])
-
-    @@unique([userId, postId])
-
-    @@map("user_starred_posts")
-}
-
 model LikedPosts {
     id        Int      @id @default(autoincrement())
     userId    Int
@@ -122,4 +110,16 @@ model LikedPosts {
     @@unique([userId, postId])
 
     @@map("user_liked_posts")
+}
+
+model SavedPosts {
+    id        Int      @id @default(autoincrement())
+    userId    Int
+    postId    Int
+    post      Post     @relation(fields: [postId], references: [id])
+    user      User     @relation(fields: [userId], references: [id])
+
+    @@unique([userId, postId])
+
+    @@map("user_saved_posts")
 }

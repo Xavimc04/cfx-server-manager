@@ -151,3 +151,56 @@ export async function commentOnPost(prevState: any, data: FormData) {
         return "Error desconocido";
     }
 }
+
+export async function toggleSavedPost(prevState: any, data: FormData) {
+    try {
+        const postId = Number(data.get("postId"));
+        const userId = Number(data.get("userId"));
+
+        if (!postId || !userId) return "Todos los campos deben ser completados";
+
+        const postSchema = z.object({
+            postId: z.number(),
+            userId: z.number()
+        });
+    
+        const post = postSchema.safeParse({
+            postId, userId
+        });
+    
+        if (!post.success) return "Todos los campos deben ser completados";
+
+        const alreadySaved = await isPostSaved(post.data.userId, post.data.postId);
+
+        if (alreadySaved) await prisma.savedPosts.deleteMany({
+            where: {
+                postId: post.data.postId,
+                userId: post.data.userId
+            }
+        }) 
+        
+        else await prisma.savedPosts.create({
+            data: {
+                postId: post.data.postId,
+                userId: post.data.userId
+            }
+        });
+    
+        revalidatePath(`/forum/post/${postId}`);
+
+        return "Post guardado";
+    } catch (error) {
+        console.error((error as Error).message);
+
+        return "Error desconocido";
+    }
+}
+
+export async function isPostSaved(userId: number, postId: number) {
+    return !!await prisma.savedPosts.findFirst({
+        where: {
+            userId,
+            postId
+        }
+    });
+}
