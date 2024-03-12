@@ -8,6 +8,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
     title: process.env.APP_NAME,
     description: process.env.APP_DESCRIPTION,
+    icons: {
+        icon: '/images/gta-v-icon.png'
+    }
 };
 
 export default function RootLayout({
