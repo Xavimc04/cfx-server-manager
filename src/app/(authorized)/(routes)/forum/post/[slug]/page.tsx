@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation' 
 import SinglePost from "@/components/layouts/forum/post/single-post"
 import { Suspense } from "react"
-import SinglePostSkeleton from "@/components/ui/skeletons/single-post.skeleton"
+import SinglePostSkeleton from "@/components/ui/skeletons/single-post-skeleton"
 import Image from 'next/image'
 import Navigator from '@/components/layouts/navigator'
 
@@ -31,7 +31,7 @@ export default async function Page({
             <Navigator />
         </section>  
 
-        <div className='flex'>
+        <div className='flex w-full justify-center'>
             <Suspense
                 key={ slug }
                 fallback={ <SinglePostSkeleton /> }

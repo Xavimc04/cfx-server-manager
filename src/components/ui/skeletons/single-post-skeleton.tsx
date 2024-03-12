@@ -1,5 +1,5 @@
 export default function SinglePostSkeleton() {
-    return <section className="w-1/2 self-center flex flex-col gap-4">
+    return <section className="w-1/2 flex flex-col gap-4">
         <div className="flex gap-4 items-center mb-5">
             <div className="animate-pulse bg-zinc-800 w-16 h-16 rounded-md"></div>
             
