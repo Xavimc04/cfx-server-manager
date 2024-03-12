@@ -8,17 +8,21 @@ export default async function UserInformation() {
         Login
     </Link>
 
-    return <section className="flex items-center gap-4">
-        { session?.user?.name }
+    return <Link
+        href={ `/u/${ session.user?.name }` }
+    >
+        <section className="flex items-center gap-4">
+            { session?.user?.name }
 
-        {
-            session.user && session.user.image && <img 
-                src={ session.user.image }
-                alt=''
-                className="rounded"
-                width="35"
-                height="35"
-            />
-        }
-    </section>
+            {
+                session.user && session.user.image && <img 
+                    src={ session.user.image }
+                    alt=''
+                    className="rounded"
+                    width="35"
+                    height="35"
+                />
+            }
+        </section>
+    </Link>
 }

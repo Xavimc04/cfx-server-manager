@@ -19,7 +19,7 @@ export default async function PostList({
     });
 
     return <Fragment>
-        <section className="flex flex-col gap-4 self-center px-5 w-full lg:px-0 lg:w-1/2 xl:w-2/4">
+        <section className="flex flex-col gap-4 self-center w-full">
             {
                 data.map((post: any) => {
                     return <SinglePost key={ post.id } post={ post } />

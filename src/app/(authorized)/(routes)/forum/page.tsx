@@ -1,8 +1,6 @@
 import PostList from "@/components/layouts/forum/post-list";
-import QueryFilter from "@/components/layouts/forum/query-filter";
-import Navigator from "@/components/layouts/navigator"; 
-import ForumPostSkeleton from "@/components/ui/skeletons/forum-post-skeleton";  
-import Image from "next/image";
+import QueryFilter from "@/components/layouts/forum/query-filter"; 
+import ForumPostSkeleton from "@/components/ui/skeletons/forum-post-skeleton";   
 import { Suspense } from "react";
 
 export default async function Page({
@@ -17,20 +15,8 @@ export default async function Page({
     const query = searchParams?.query || '';
     const page = Number(searchParams?.page) || 1; 
 
-    return <main className="min-h-screen flex flex-col gap-10 mb-10">
-        <section className="relative h-80 bg-gradient-to-b flex flex-col from-transparent via-30% to-zinc-900 to-95%">
-            <Image 
-                src="/images/forum-header-wallpaper.jpg"
-                alt="Background image"
-                className="h-full w-screen absolute -z-10 object-cover"
-                layout="fill"
-                objectFit="cover"
-            />
-
-            <Navigator />
-
-            <QueryFilter />
-        </section>
+    return <section className="flex flex-col gap-10 self-center justify-center px-5 w-full lg:px-0 lg:w-1/2 xl:w-2/4">
+        <QueryFilter />
 
         <Suspense
             key={ query + page }
@@ -41,5 +27,5 @@ export default async function Page({
                 page={ page }
             />
         </Suspense>
-    </main>
+    </section>
 }

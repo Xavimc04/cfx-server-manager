@@ -21,7 +21,7 @@ export default function QueryFilter() {
         replace(`${pathname}?${params.toString()}`);
     }, 300);
 
-    return <section className="absolute bottom-0 self-center flex items-center gap-4 w-full px-5 lg:px-0 lg:w-1/2 xl:w-2/4">
+    return <section className="self-center flex -mt-20 z-20 items-center gap-4 w-full">
         <input 
             className="bg-zinc-800 px-4 border border-zinc-700 shadow-lg flex-1 py-2 rounded-md focus:outline-none focus:ring-0"
             placeholder="Buscar..."

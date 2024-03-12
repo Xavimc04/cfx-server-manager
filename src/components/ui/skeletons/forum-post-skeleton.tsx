@@ -1,5 +1,5 @@
 export default function ForumPostSkeleton() {
-    return <section className="self-center w-1/2 flex flex-col gap-4">
+    return <section className="self-center w-full flex flex-col gap-4">
         {
             Array.from({ length: 5 }).map((_, index) => {
                 return <article key={ index } className="border border-zinc-700 self-center p-3 rounded flex items-center w-full gap-4">

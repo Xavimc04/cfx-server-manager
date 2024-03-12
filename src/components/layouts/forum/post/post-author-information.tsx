@@ -15,7 +15,7 @@ export default async function AuthorInformation({
     const session = await auth();
     const isSaved = await isPostSaved(Number(session?.user?.id), postId);
 
-    return author && <section className="absolute -top-24 self-center flex items-center gap-4 w-full px-5 lg:px-0 lg:w-1/2 xl:w-2/4">
+    return author && <section className="flex items-center gap-4 w-full">
         {/* @ Author image */}
         <Link
             href={ `/u/${ author.name }` }

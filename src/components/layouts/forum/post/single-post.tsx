@@ -12,13 +12,13 @@ export default async function SinglePost({
 
     if(!post) return redirect('/forum')
 
-    return <section className="relative flex flex-col items-center w-full">
+    return <section className="relative flex flex-col gap-10 items-center w-full">
         <AuthorInformation 
             author={ post.author }
             postId={ post.id }
         />
         
-        <article className="flex flex-col gap-4 self-center px-5 w-full lg:px-0 lg:w-1/2 xl:w-2/4">
+        <article className="flex flex-col gap-4 self-center w-full">
             <h1 className="text-4xl poppins">
                 { post.title }
             </h1>
