@@ -22,7 +22,7 @@ export default async function AuthorInformation({
         >
             <img 
                 src={ author.image || '' }
-                alt={ author.name || '' }
+                alt=''
                 className="w-16 h-16 rounded-md cursor-pointer transition-all hover:opacity-80"
             />
         </Link>

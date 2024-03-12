@@ -14,7 +14,7 @@ export default async function UserInformation() {
         {
             session.user && session.user.image && <img 
                 src={ session.user.image }
-                alt="User profile picture" 
+                alt=''
                 className="rounded"
                 width="35"
                 height="35"

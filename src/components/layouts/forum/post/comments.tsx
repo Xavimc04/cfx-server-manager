@@ -15,7 +15,7 @@ export default function Comments({
                     <div className="flex gap-4">
                         <img 
                             src={ comment.author.image || '' } 
-                            alt={ comment.author.name || '' }
+                            alt=''
                             className="rounded-md w-10 h-10 self-center"
                         />
             
