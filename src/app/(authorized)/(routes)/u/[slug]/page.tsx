@@ -1,4 +1,4 @@
-import UserInformation from "@/components/layouts/u/user-information"
+import UserContent from "@/components/layouts/u/user-content"
 import ProfileSkeleton from "@/components/ui/skeletons/profile-skeleton"
 import { redirect } from "next/navigation"
 import { Suspense } from "react"
@@ -18,7 +18,7 @@ export default function Page({
         <Suspense
             fallback={ <ProfileSkeleton /> }
         >
-            <UserInformation 
+            <UserContent 
                 slug={ slug }
             />
         </Suspense>

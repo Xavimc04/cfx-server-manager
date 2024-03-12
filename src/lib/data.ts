@@ -204,3 +204,11 @@ export async function isPostSaved(userId: number, postId: number) {
         }
     });
 }
+
+export async function fetchUserByName(name: string) {
+    return await prisma.user.findFirst({
+        where: {
+            name
+        }
+    });
+}
