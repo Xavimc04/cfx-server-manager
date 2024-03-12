@@ -170,19 +170,17 @@ export async function toggleSavedPost(prevState: any, data: FormData) {
     
         if (!post.success) return "Todos los campos deben ser completados";
 
-        const alreadySaved = await isPostSaved(post.data.userId, post.data.postId);
+        const alreadySaved = await isPostSaved(userId, postId);
 
         if (alreadySaved) await prisma.savedPosts.deleteMany({
             where: {
-                postId: post.data.postId,
-                userId: post.data.userId
+                postId, userId
             }
         }) 
         
         else await prisma.savedPosts.create({
             data: {
-                postId: post.data.postId,
-                userId: post.data.userId
+                postId, userId
             }
         });
     
