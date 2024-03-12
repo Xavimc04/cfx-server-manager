@@ -1,4 +1,3 @@
-import { Post } from "@/types/forum/_types";
 import SinglePost from "./single-post";
 import { Fragment } from "react";
 import Pagination from "../pagination";

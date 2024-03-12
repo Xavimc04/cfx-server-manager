@@ -197,6 +197,8 @@ export async function toggleSavedPost(prevState: any, data: FormData) {
 }
 
 export async function isPostSaved(userId: number, postId: number) {
+    if(!userId || !postId) return false; 
+
     return !!await prisma.savedPosts.findFirst({
         where: {
             userId,

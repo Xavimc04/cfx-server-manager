@@ -16,7 +16,7 @@ export default function SavePost({
     const [state, dispatch] = useFormState(toggleSavedPost, undefined);
     const { data: session } = useSession();
 
-    if(!session) return; 
+    if(!session || !session.user) return; 
 
     return <form 
         action={ dispatch }
