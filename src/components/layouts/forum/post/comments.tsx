@@ -8,7 +8,7 @@ export default function Comments({
     comments: Comment[],
     postId: number
 }) {
-    return <section className="self-center flex flex-col w-full">
+    return <section className="self-center flex flex-col gap-10 w-full">
         {
             comments.map((comment: Comment) => {
                 return <article key={ comment.id } className="flex flex-col">
