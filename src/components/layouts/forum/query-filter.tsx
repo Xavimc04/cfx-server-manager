@@ -3,6 +3,7 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
 import CreatePostModal from "./create-post-modal";
+import { Fragment } from "react";
 
 export default function QueryFilter() {
     const searchParams = useSearchParams();
@@ -21,7 +22,7 @@ export default function QueryFilter() {
         replace(`${pathname}?${params.toString()}`);
     }, 300);
 
-    return <section className="self-center flex -mt-20 z-20 items-center gap-4 w-full">
+    return <Fragment>
         <input 
             className="bg-zinc-800 px-4 border border-zinc-700 shadow-lg flex-1 py-2 rounded-md focus:outline-none focus:ring-0"
             placeholder="Buscar..."
@@ -30,5 +31,5 @@ export default function QueryFilter() {
         />
 
         <CreatePostModal />
-    </section>
+    </Fragment>
 }

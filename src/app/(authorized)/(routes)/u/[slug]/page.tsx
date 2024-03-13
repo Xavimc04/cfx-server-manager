@@ -4,13 +4,20 @@ import { redirect } from "next/navigation"
 import { Suspense } from "react"
 
 export default function Page({
-    params
+    params,
+    searchParams
 } : {
     params: {
         slug: string
+    },
+    searchParams: {
+        query?: string,
+        page?: number
     }
 }) {
     const slug = params.slug
+    const query = searchParams?.query || '';
+    const page = Number(searchParams?.page) || 1;
 
     if(!slug) return redirect('/')
 
@@ -20,6 +27,8 @@ export default function Page({
         >
             <UserContent 
                 slug={ slug }
+                query={ query }
+                page={ page }
             />
         </Suspense>
     </section>

@@ -5,17 +5,20 @@ import { getFilteredPosts } from "@/lib/data";
 
 export default async function PostList({
     query, 
-    page
+    page,
+    authorId
 } : {
     query: string,
-    page: number
+    page: number,
+    authorId?: number
 }) { 
     const {
         data,
         totalPages
     } = await getFilteredPosts({
         query, 
-        page
+        page,
+        authorId
     });
 
     return <Fragment>
