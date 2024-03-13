@@ -30,7 +30,7 @@ export default async function AuthorInformation({
         {/* @ Author information */}
         <section className="flex-1">
             <Link
-                href={ `/u/usuario-test` }
+                href={ `/u/${ author.name }` }
             >
                 <h1 className="text-2xl poppins cursor-pointer hover:text-indigo-500 transition-all">
                     { author.name }
