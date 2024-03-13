@@ -2,7 +2,7 @@
 
 import { z } from "zod";
 import prisma from "./prisma";
-import { PostList } from "@/types/forum/_types";
+import { PostQuery } from "@/types/forum/_types";
 import { POST_PER_PAGE } from "./constants";
 import { revalidatePath } from "next/cache";
 
@@ -56,14 +56,24 @@ export async function countPosts(query: string) {
 
 export async function getFilteredPosts({
     query,
-    page
-} : PostList) {
+    page,
+    authorId
+} : PostQuery) {
+    let whereClause: any = {
+        title: {
+            contains: query
+        }
+    };
+
+    if (authorId) {
+        whereClause = {
+            ...whereClause,
+            authorId
+        };
+    }
+
     const data = await prisma.post.findMany({
-        where: {
-            title: {
-                contains: query
-            }
-        },
+        where: whereClause,
         skip: (page - 1) * POST_PER_PAGE,
         take: POST_PER_PAGE,
         include: {
@@ -209,6 +219,18 @@ export async function fetchUserByName(name: string) {
     return await prisma.user.findFirst({
         where: {
             name
+        },
+        select: {
+            id: true,
+            name: true,
+            image: true,
+            createdAt: true,
+            _count: {
+                select: {
+                    posts: true,
+                    comments: true
+                }
+            }
         }
     });
 }

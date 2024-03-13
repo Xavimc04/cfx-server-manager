@@ -16,9 +16,10 @@ export interface Author {
     createdAt: Date;
 }
 
-export interface PostList {
+export interface PostQuery {
     query: string;
     page: BigInt | Number | any;
+    authorId?: BigInt | Number | any;
 }
 
 export interface Comment {
