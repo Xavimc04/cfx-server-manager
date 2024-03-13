@@ -1,5 +1,5 @@
 export default function Page() {
-    return <section className="self-center w-1/2 z-20">
+    return <section className="self-center z-20 px-5 w-full lg:px-0 lg:w-1/2 xl:w-2/4">
         <article className="text-center -mt-20 flex flex-col">
             {/* @ Announce */}
             <p className="mb-4 border self-center px-5 py-2 rounded-full bg-indigo-500/20 border-indigo-500">
