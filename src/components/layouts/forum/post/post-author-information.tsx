@@ -3,7 +3,6 @@ import Link from "next/link";
 import SavePost from "./save-post";
 import { isPostSaved } from "@/lib/data";
 import { auth } from "@/auth";
-import { Suspense } from "react";
 
 export default async function AuthorInformation({
     author,
