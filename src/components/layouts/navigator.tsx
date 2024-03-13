@@ -10,6 +10,7 @@ export default function Navigator() {
         <ul className="flex items-center gap-4">
             <li><Link href="/">Inicio</Link></li>
             <li><Link href="/forum">Foro</Link></li>
+            <li><Link href="/store">Tienda</Link></li>
         </ul>
 
         <UserInformation />
