@@ -59,7 +59,7 @@ export default async function UserContent({
         </section>
 
         <Suspense
-            key={ "forum-skeleton-render-posts" }
+            key={ query + page + user.id }
             fallback={ <ForumPostSkeleton /> }
         >
             <PostList
