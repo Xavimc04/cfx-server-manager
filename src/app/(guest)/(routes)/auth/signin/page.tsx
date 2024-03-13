@@ -1,7 +1,13 @@
+import { auth } from "@/auth";
 import DiscordButton from "@/components/ui/buttons/discord"; 
 import Image from "next/image";
+import { redirect } from "next/navigation";
 
-export default function Page() {
+export default async function Page() {
+    const session = await auth();
+
+    if(session) return redirect('/');
+
     return <main className="min-h-screen flex flex-col gap-10 mb-10">
         <section className="relative bg-gradient-to-b flex flex-col from-transparent via-30% to-zinc-900 to-95%" style={{
             height: "60vh"

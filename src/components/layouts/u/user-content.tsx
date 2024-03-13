@@ -5,6 +5,8 @@ import Counter from "./counter";
 import ForumPostSkeleton from "@/components/ui/skeletons/forum-post-skeleton";
 import PostList from "../forum/post-list";
 import QueryFilter from "../forum/query-filter";
+import { auth } from "@/auth"; 
+import Logout from "./logout";
 
 export default async function UserContent({
     slug,
@@ -16,6 +18,7 @@ export default async function UserContent({
     page: number
 }) {
     const user = await fetchUserByName(slug);
+    const session = await auth();
 
     if(!user) return redirect('/404')
 
@@ -38,6 +41,11 @@ export default async function UserContent({
                     Se unió el { user.createdAt.toDateString() }
                 </small>
             </section>  
+
+            {/* @ Logout */}
+            {
+                session?.user?.id && Number(session.user.id) === Number(user.id) && <Logout />
+            }
         </section>
 
         <section className="flex items-end gap-10">

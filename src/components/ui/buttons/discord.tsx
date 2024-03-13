@@ -4,7 +4,7 @@ import { signIn } from "next-auth/react"
 
 export default function DiscordButton() {
     return <button
-        onClick={() => signIn('discord', { callbackUrl: `${process.env.NEXT_PUBLIC_APP_URL}/` })}
+        onClick={() => signIn('discord')}
         className="flex items-center bg-zinc-800 border border-indigo-500 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-indigo-500 hover:bg-indigo-500/20 transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
     
         <svg className="h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" width="800px" height="800px" viewBox="0 -28.5 256 256" version="1.1" preserveAspectRatio="xMidYMid">
