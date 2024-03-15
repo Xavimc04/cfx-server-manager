@@ -17,7 +17,8 @@ export default function PayPalButton({
         <PayPalButtons 
             style={{
                 layout: "horizontal",
-                color: "gold"
+                color: "gold",
+                tagline: false
             }}
             createOrder={async () => {
                 const response = await fetch("/api/checkout", {

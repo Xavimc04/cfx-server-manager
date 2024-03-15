@@ -1,8 +1,18 @@
 import { NextResponse } from "next/server";
 import paypal from "@paypal/checkout-server-sdk";
 import { generatePaypalClient } from "@/lib/paypal";
+import { auth } from "@/auth";
+import { NextApiRequest, NextApiResponse } from "next";
 
-export async function POST() {
+export async function POST(req: NextApiRequest, res: NextApiResponse) {
+    const session = await auth(req, res)
+
+    if(!session) {
+        return NextResponse.json({
+            error: "Unauthorized"
+        }, { status: 401 })
+    }
+
     try {
         const request = new paypal.orders.OrdersCreateRequest();
     
