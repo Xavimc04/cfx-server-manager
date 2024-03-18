@@ -2,9 +2,10 @@ import { NextResponse } from "next/server";
 import paypal from "@paypal/checkout-server-sdk";
 import { generatePaypalClient } from "@/lib/paypal";
 import { auth } from "@/auth";
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextApiResponse } from "next";
+import { DEFAULT_PAYMENT_AMOUNT } from "@/lib/constants";
 
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
+export async function POST(req: any, res: NextApiResponse) {
     const session = await auth(req, res)
 
     if(!session) {
@@ -14,6 +15,8 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
     }
 
     try {
+        const data = await req.json();
+
         const request = new paypal.orders.OrdersCreateRequest();
     
         request.requestBody({
@@ -22,7 +25,7 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
                 {
                     amount: {
                         currency_code: "USD",
-                        value: "150.00"
+                        value: data.amount || DEFAULT_PAYMENT_AMOUNT
                     }
                 }
             ]

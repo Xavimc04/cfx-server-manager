@@ -1,6 +1,8 @@
 "use client"
 
+import { DEFAULT_PAYMENT_AMOUNT } from "@/lib/constants";
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js"
+import { useSearchParams } from "next/navigation";
 
 export default function PayPalButton({
     clientId
@@ -8,6 +10,8 @@ export default function PayPalButton({
     clientId: string
 }) {
     if(!clientId) return; 
+
+    const searchParams = useSearchParams();
 
     return <PayPalScriptProvider
         options={{
@@ -25,7 +29,10 @@ export default function PayPalButton({
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
-                    }
+                    }, 
+                    body: JSON.stringify({
+                        amount: searchParams.get("amount") || DEFAULT_PAYMENT_AMOUNT
+                    })
                 })
 
                 const data = await response.json()
