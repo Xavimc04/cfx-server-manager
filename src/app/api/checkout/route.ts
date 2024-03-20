@@ -132,6 +132,8 @@ export async function PUT(req: Request) {
             }, { status: 500 })
         }
 
+        logger.info(session.user.name + " - Payment with orderId: " + orderId + " completed successfully.")
+
         return NextResponse.json({
             message: "Payment complete!"
         })
