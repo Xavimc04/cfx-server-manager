@@ -39,16 +39,17 @@ export default function PayPalButton({
 
                 return data.id
             }}
-            onApprove={ async (data, actions) => {
-                return await console.log(data)
-
+            onApprove={ async (data, actions) => { 
                 const response = await fetch("/api/checkout/", {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
-                        orderId: data.orderID
+                        orderId: data.orderID,
+                        payerId: data.payerID,
+                        facilitatorAccessToken: data.facilitatorAccessToken,
+                        paymentId: data.paymentID
                     })
                 })
 
