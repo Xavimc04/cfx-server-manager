@@ -24,6 +24,8 @@ model Account {
     user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
     @@unique([provider, providerAccountId])
+
+    @@map("user_accounts")
 }
 
 model Session {
@@ -32,6 +34,8 @@ model Session {
     userId       Int
     expires      DateTime
     user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@map("user_sessions")
 }
 
 model User {
@@ -49,6 +53,8 @@ model User {
     comments      Comments[]
     savedPosts    SavedPosts[]
     payments      Payments[]
+
+    @@map("users")
 }
 
 model VerificationToken {
@@ -107,12 +113,15 @@ model Payments {
     userId   Int
     amount   Float
     orderId  String
-    payerId  String
-    paymentId String
-    facilitatorAccessToken String
+    status  String @default("pending")
+    payerId  String?
+    paymentId String?
+    facilitatorAccessToken String?
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
     user     User     @relation(fields: [userId], references: [id])
+
+    @@map("payments")
 }
