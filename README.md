@@ -1,4 +1,4 @@
-[Imgur](https://i.imgur.com/jz1ZV28.png)
+![Imgur](https://i.imgur.com/jz1ZV28.png)
 
 ## Server Manager
 
