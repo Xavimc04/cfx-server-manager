@@ -2,6 +2,7 @@
 
 import { DEFAULT_PAYMENT_AMOUNT } from "@/lib/constants";
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js"
+import { useSession } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 
 export default function PayPalButton({
@@ -11,7 +12,10 @@ export default function PayPalButton({
 }) {
     if(!clientId) return; 
 
+    const { data: session } = useSession();
     const searchParams = useSearchParams();
+
+    if(!session) return;
 
     return <PayPalScriptProvider
         options={{
@@ -58,8 +62,6 @@ export default function PayPalButton({
                 if(result.error) {
                     return console.error(result.error)
                 }
-
-                console.log("Payment complete!", result)
 
                 return result
             }}

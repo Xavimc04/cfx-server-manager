@@ -98,17 +98,6 @@ export async function PUT(req: Request) {
             }
         })
 
-        const increasedBalance = await prisma.user.update({
-            where: {
-                id: Number(session.user.id)
-            },
-            data: {
-                balance: {
-                    increment: Number(data.amount)
-                }
-            }
-        })
-
         if(!updated) {
             logger.error(session.user.name + " - Attempted to update payment with orderId: " + orderId + " but failed.")
 
@@ -116,6 +105,24 @@ export async function PUT(req: Request) {
                 error: "Payment not updated"
             }, { status: 500 })
         }
+
+        const payment = await prisma.payments.findFirst({
+            where: {
+                orderId: orderId as string,
+                userId: Number(session.user.id)
+            }
+        })
+
+        const increasedBalance = await prisma.user.update({
+            where: {
+                id: Number(session.user.id)
+            },
+            data: {
+                balance: {
+                    increment: Number(payment?.amount) || 0
+                }
+            }
+        })
 
         if(!increasedBalance) {
             logger.error(session.user.name + " - Attempted to update balance for user with id: " + session.user.id + " but failed.")

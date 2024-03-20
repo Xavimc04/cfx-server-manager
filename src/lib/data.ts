@@ -234,3 +234,18 @@ export async function fetchUserByName(name: string) {
         }
     });
 }
+
+export async function getUserBalance(userId: number) {
+    if (!userId) return 0;
+
+    const user = await prisma.user.findUnique({
+        where: {
+            id: userId
+        },
+        select: {
+            balance: true
+        }
+    });
+
+    return user?.balance || 0;
+}
