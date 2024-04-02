@@ -1,6 +1,5 @@
 'use client'
 
-import { useSession } from "next-auth/react";
 import { Fragment, useState } from "react";
 import AddIcon from '@mui/icons-material/Add';
 import { AnimatePresence, motion } from "framer-motion";
@@ -17,10 +16,6 @@ export default function Modal({
     children: React.ReactNode
 }) {
     const [display, handleDisplay] = useState(false);
-    
-    const { data: session } = useSession();
-
-    if (!session) return;
 
     return <Fragment>
         <button 

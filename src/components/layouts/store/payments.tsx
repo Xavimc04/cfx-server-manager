@@ -30,7 +30,7 @@ export default async function Payments() {
                         textShadow: '0 0 10px rgba(0, 0, 0, .7)'
                     }}
                 >
-                    { balance }$
+                    { balance }€
                 </p>
             </div>
         </article>
