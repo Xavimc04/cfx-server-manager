@@ -35,7 +35,7 @@ export default async function Payments() {
             </div>
         </article>
         
-        <section className="flex flex-col gap-4">
+        <section className="flex flex-col gap-4 z-10">
             <AmountSelector />
 
             <PayPalButton
