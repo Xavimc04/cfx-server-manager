@@ -293,3 +293,13 @@ export async function registerStoreProduct(prevState: any, data: FormData) {
         return "Error desconocido";
     }
 }
+
+export async function getFilteredProducts(query: string) {
+    return await prisma.product.findMany({
+        where: {
+            title: {
+                contains: query
+            }
+        }
+    });
+}
