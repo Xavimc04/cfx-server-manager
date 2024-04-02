@@ -1,11 +1,23 @@
+"use client"
+
+import Modal from "@/components/ui/modal";
+import { buyProduct } from "@/lib/data";
 import { Product } from "@/types/store/_types";
+import AddCardOutlinedIcon from '@mui/icons-material/AddCardOutlined';
+import { useSession } from "next-auth/react";
+import { useFormState } from "react-dom";
 
 export default function SingleProduct({
     product
 } : {
     product: Product
 }) {
-    return <article className="border border-zinc-700 group hover:border-green-400 hover:bg-green-400/10 cursor-pointer select-none transition-all p-3 rounded flex items-center gap-4">
+    const [state, dispatch] = useFormState(buyProduct, undefined);
+    const { data: session } = useSession();
+
+    if (!session) return;
+
+    return <article className="border border-zinc-700 cursor-pointer select-none transition-all p-3 rounded flex items-center gap-4">
         {/* @ Image */}
         <img 
             src={ product.image || '' }
@@ -26,5 +38,28 @@ export default function SingleProduct({
         <section className="flex items-center text-3xl text-green-400 mr-3 gap-3 poppins"> 
             { product.price }€
         </section>
+
+        {
+            session && session?.user?.id && <Modal
+                action={ dispatch }
+                title={ product.title }
+                description={ product.description }
+                content={
+                    <AddCardOutlinedIcon />
+                }
+            >
+                {
+                    state && <p className="text-sm text-red-500">
+                        * { state }
+                    </p>
+                }
+
+                <input type="hidden" name="productId" defaultValue={ String(product.id) } />
+                
+                <input type="hidden" name="userId" defaultValue={ session.user?.id } />
+
+                <button className="bg-indigo-500 hover:bg-indigo-700 transition-all text-white p-2 rounded-sm">Comprar</button>
+            </Modal> 
+        }
     </article>
 }

@@ -24,7 +24,7 @@ export default async function Page({
         <Payments />
 
         {/* @ Filter and register new products */}
-        <section className="self-center flex z-20 items-center gap-4 w-full">
+        <section className="self-center flex items-center gap-4 w-full">
             <Search />
 
             <CreateProductModal />

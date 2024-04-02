@@ -5,11 +5,13 @@ import AddIcon from '@mui/icons-material/Add';
 import { AnimatePresence, motion } from "framer-motion";
 
 export default function Modal({
+    content,
     action, 
     title, 
     description, 
     children
 } : {
+    content?: React.ReactNode,
     action: any,
     title: string,
     description: string, 
@@ -22,7 +24,9 @@ export default function Modal({
             className="bg-indigo-300 border border-indigo-500 text-indigo-500 p-2 rounded-md hover:bg-indigo-500 hover:text-indigo-300 transition-all duration-300"
             onClick={() => handleDisplay(true)}
         >
-            <AddIcon />
+            {
+                content ? content : <AddIcon />
+            }
         </button>
 
         <AnimatePresence>

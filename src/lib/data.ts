@@ -303,3 +303,57 @@ export async function getFilteredProducts(query: string) {
         }
     });
 }
+
+export async function buyProduct(prevState: any, data: FormData) {
+    try {
+        const productId = Number(data.get("productId"));
+        const userId = Number(data.get("userId"));
+    
+        if (!productId || !userId) return "Por favor inicia sesión para comprar productos";
+    
+        const product = await prisma.product.findUnique({
+            where: {
+                id: productId
+            }
+        });
+    
+        if (!product) return "Producto no encontrado";
+    
+        const user = await prisma.user.findUnique({
+            where: {
+                id: userId
+            }
+        });
+    
+        if (!user) return "Usuario no encontrado";
+    
+        if (user.balance < product.price) return "Saldo insuficiente";
+    
+        await prisma.user.update({
+            where: {
+                id: userId
+            },
+            data: {
+                balance: {
+                    decrement: product.price
+                }
+            }
+        });
+    
+        await prisma.userPurchases.create({
+            data: {
+                userId,
+                productId,
+                code: Math.random().toString(36).substring(7)
+            }
+        });
+    
+        revalidatePath("/store");
+    
+        return "Producto comprado";   
+    } catch (error) {
+        console.error((error as Error).message);
+
+        return "Error desconocido";
+    }
+}

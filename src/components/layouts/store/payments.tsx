@@ -12,7 +12,7 @@ export default async function Payments() {
 
     const balance = await getUserBalance(Number(session?.user?.id))
 
-    return <div className="flex flex-col gap-10 sm:flex-row justify-between items-center">
+    return <div className="flex flex-col gap-10 sm:flex-row justify-between items-center -z-10">
         <article className="flex gap-4">
             <img 
                 src={ session?.user?.image || '' }
