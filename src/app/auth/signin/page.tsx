@@ -1,6 +1,5 @@
 import { auth } from "@/auth";
-import DiscordButton from "@/components/ui/buttons/discord"; 
-import Image from "next/image";
+import DiscordButton from "@/components/ui/buttons/discord";  
 import { redirect } from "next/navigation";
 
 export default async function Page() {

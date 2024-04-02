@@ -62,7 +62,7 @@ export default function CreateProductModal() {
         />
 
         {
-            imageUrl ? <img src={ imageUrl } className="w-full rounded" /> : <CldUploadWidget
+            imageUrl ? <img src={ imageUrl } className="w-48 self-center rounded" /> : <CldUploadWidget
                 uploadPreset="server_manager"
                 onSuccess={({ info } : any) => {
                     if(info.url) handleImageUrl(info.url)

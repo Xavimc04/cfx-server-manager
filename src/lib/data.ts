@@ -5,6 +5,7 @@ import prisma from "./prisma";
 import { PostQuery } from "@/types/forum/_types";
 import { POST_PER_PAGE } from "./constants";
 import { revalidatePath } from "next/cache";
+import logger from "./logger";
 
 export async function registerForumPost(prevState: any, data: FormData) {
     try {
@@ -347,6 +348,8 @@ export async function buyProduct(prevState: any, data: FormData) {
                 code: Math.random().toString(36).substring(7)
             }
         });
+
+        logger.info(`User ${user.name} bought product ${product.title}`);
     
         revalidatePath("/store");
     

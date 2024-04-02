@@ -48,6 +48,12 @@ export default async function UserContent({
             }
         </section>
 
+        {
+            session?.user?.id && Number(session.user.id) === Number(user.id) && <section>
+                Pagos
+            </section>
+        }
+
         <section className="flex items-end gap-10">
             <Counter count={ user._count.posts }>
                 <p className="text-lg poppins text-zinc-600">
