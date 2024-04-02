@@ -1,3 +1,4 @@
+import Search from "@/components/layouts/search";
 import Payments from "@/components/layouts/store/payments";
 
 export default async function Page() {
@@ -9,5 +10,9 @@ export default async function Page() {
 
         {/* @ Payment */}
         <Payments />
+
+        <section className="self-center flex z-20 items-center gap-4 w-full">
+            <Search />
+        </section>
     </section>
 }
