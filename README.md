@@ -39,6 +39,20 @@ npm install
 npm run dev
 ```
 
+## Working on features
+
+- Preview saved posts or filter by 
+- Preview payments and total amount
+- Get payment code and use it ingame
+- Lua script to use it ingame
+- Landing page content 
+
+
+## Bugs
+
+- Close modals on create items
+- Action done does not close modals
+
 ## Author
 
 Xavier Morell
