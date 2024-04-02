@@ -55,6 +55,7 @@ model User {
     comments      Comments[]
     savedPosts    SavedPosts[]
     payments      Payments[]
+    products      Product[]
 
     @@map("users")
 }
@@ -70,6 +71,8 @@ model VerificationToken {
     expires    DateTime
 
     @@unique([identifier, token])
+
+    @@map("verification_tokens")
 }
 
 model Post {
@@ -131,4 +134,20 @@ model Payments {
     user     User     @relation(fields: [userId], references: [id])
 
     @@map("payments")
+}
+
+model Product {
+    id          Int      @id @default(autoincrement())
+    authorId    Int
+    title        String
+    description String   @db.Text
+    price       Float
+    image       String
+
+    author      User     @relation(fields: [authorId], references: [id])
+
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+
+    @@map("products")
 }

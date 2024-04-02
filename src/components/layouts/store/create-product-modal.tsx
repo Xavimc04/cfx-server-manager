@@ -1,17 +1,18 @@
 'use client'
 
-import { registerForumPost } from "@/lib/data";
+import { registerStoreProduct } from "@/lib/data";
 import { useSession } from "next-auth/react";
 import { useFormState } from "react-dom";
 import Label from "@/components/ui/label";
 import Input from "@/components/ui/input";
 import Modal from "@/components/ui/modal";
-import { useRef } from "react";
+import { useState } from "react";
+import { CldUploadWidget } from "next-cloudinary";
 
 export default function CreateProductModal() {
-    const [state, dispatch] = useFormState(registerForumPost, undefined);
-    const imageRef = useRef(null);
-    
+    const [state, dispatch] = useFormState(registerStoreProduct, undefined);
+    const [imageUrl, handleImageUrl] = useState<string | null>(null);
+
     const { data: session } = useSession();
 
     if (!session) return;
@@ -50,16 +51,35 @@ export default function CreateProductModal() {
             htmlFor="price"
             required
         >
-            <Input name="price" placeholder="5.99" type="number" />
+            <Input name="price" placeholder="5.00" type="number" />
         </Label>
 
-        <Label
-            label="Imagen"
-            htmlFor="image"
-            required
-        >
-            <input type="file" name="image" className="hidden" ref={ imageRef } />
-        </Label>
+        <input
+            name="image"
+            className="hidden"
+            value={ imageUrl || '' }
+            readOnly
+        />
+
+        {
+            imageUrl ? <img src={ imageUrl } className="w-full rounded" /> : <CldUploadWidget
+                uploadPreset="server_manager"
+                onSuccess={({ info } : any) => {
+                    if(info.url) handleImageUrl(info.url)
+                }}
+            >
+                {
+                    ({ open }) => {
+                        return <button
+                            onClick={() => open()}
+                            className="border-dotted border-2 border-gray-700 p-5 rounded text-gray-500 my-3"
+                        >
+                            Subir imagen
+                        </button>
+                    }
+                }
+            </CldUploadWidget>
+        }
         
         <button 
             className="bg-indigo-300 border border-indigo-500 text-indigo-500 p-2 rounded-md hover:bg-indigo-500 hover:text-indigo-300 transition-all duration-300"

@@ -249,3 +249,47 @@ export async function getUserBalance(userId: number) {
 
     return user?.balance || 0;
 }
+
+export async function registerStoreProduct(prevState: any, data: FormData) {
+    try {
+        const authorId = Number(data.get("authorId"));
+        const title = data.get("title") as string;
+        const description = data.get("description") as string;
+        const price = Number(data.get("price"));
+        const imageUrl = data.get("image") as string;
+
+        if (!authorId || !title || !description || !price || !imageUrl) return "Todos los campos deben ser completados";
+
+        const postSchema = z.object({
+            authorId: z.number(),
+            title: z.string(),
+            description: z.string(),
+            price: z.number(),
+            imageUrl: z.string()
+        });
+    
+        const post = postSchema.safeParse({
+            authorId, title, description, price, imageUrl
+        });
+    
+        if (!post.success) return "Todos los campos deben ser completados";
+    
+        await prisma.product.create({
+            data: {
+                authorId: post.data.authorId,
+                title: post.data.title,
+                description: post.data.description,
+                price: post.data.price,
+                image: post.data.imageUrl
+            }
+        })
+
+        revalidatePath("/store");
+    
+        return "Producto registrado";
+    } catch (error) {
+        console.error((error as Error).message);
+
+        return "Error desconocido";
+    }
+}
