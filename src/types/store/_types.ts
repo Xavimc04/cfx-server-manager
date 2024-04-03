@@ -7,3 +7,14 @@ export interface Product {
     image: string;
     createdAt: Date;
 }
+
+export interface Purchase {
+    id: Number;
+    userId: Number;
+    productId: Number;
+    code: string;
+    status: string;
+    createdAt: Date;
+
+    product: Product;
+}

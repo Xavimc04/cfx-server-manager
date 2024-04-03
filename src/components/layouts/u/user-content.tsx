@@ -7,6 +7,7 @@ import PostList from "../forum/post-list";
 import QueryFilter from "../forum/query-filter";
 import { auth } from "@/auth"; 
 import Logout from "./logout";
+import Payments from "./payments";
 
 export default async function UserContent({
     slug,
@@ -48,13 +49,7 @@ export default async function UserContent({
             }
         </section>
 
-        {
-            session?.user?.id && Number(session.user.id) === Number(user.id) && <section>
-                Pagos
-            </section>
-        }
-
-        <section className="flex items-end gap-10">
+        <section className="flex items-end gap-10 mt-5">
             <Counter count={ user._count.posts }>
                 <p className="text-lg poppins text-zinc-600">
                     Publicaciones
@@ -82,5 +77,9 @@ export default async function UserContent({
                 authorId={ user.id }
             />
         </Suspense>
+
+        {
+            session?.user?.id && Number(session.user.id) === Number(user.id) && <Payments />
+        }
     </Fragment>
 }

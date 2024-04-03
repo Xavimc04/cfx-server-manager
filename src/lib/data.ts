@@ -360,3 +360,14 @@ export async function buyProduct(prevState: any, data: FormData) {
         return "Error desconocido";
     }
 }
+
+export async function getUserPurchases(userId: number) {
+    return await prisma.userPurchases.findMany({
+        where: {
+            userId
+        },
+        include: {
+            product: true
+        }
+    });
+}
