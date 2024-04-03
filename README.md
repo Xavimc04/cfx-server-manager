@@ -41,12 +41,10 @@ npm run dev
 
 ## Working on features
 
-- Preview saved posts or filter by 
-- Preview payments and total amount
+- Preview saved posts or filter by
 - Get payment code and use it ingame
 - Lua script to use it ingame
-- Landing page content 
-
+- Landing page content
 
 ## Bugs
 

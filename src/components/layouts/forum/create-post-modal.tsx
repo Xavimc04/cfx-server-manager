@@ -6,6 +6,7 @@ import { useFormState } from "react-dom";
 import Label from "@/components/ui/label";
 import Input from "@/components/ui/input";
 import Modal from "@/components/ui/modal";
+import Submit from "../submit";
 
 export default function CreatePostModal() {
     const [state, dispatch] = useFormState(registerForumPost, undefined);
@@ -45,12 +46,11 @@ export default function CreatePostModal() {
                 name="content" 
             ></textarea>
         </Label>
-        
-        <button 
+
+        <Submit
             className="bg-indigo-300 border border-indigo-500 text-indigo-500 p-2 rounded-md hover:bg-indigo-500 hover:text-indigo-300 transition-all duration-300"
-            type="submit"
         >
             Publicar
-        </button>
+        </Submit>
     </Modal>
 }

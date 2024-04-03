@@ -6,6 +6,7 @@ import { Product } from "@/types/store/_types";
 import AddCardOutlinedIcon from '@mui/icons-material/AddCardOutlined';
 import { useSession } from "next-auth/react";
 import { useFormState } from "react-dom";
+import Submit from "../submit";
 
 export default function SingleProduct({
     product
@@ -58,7 +59,11 @@ export default function SingleProduct({
                 
                 <input type="hidden" name="userId" defaultValue={ session.user?.id } />
 
-                <button className="bg-indigo-500 hover:bg-indigo-700 transition-all text-white p-2 rounded-sm">Comprar</button>
+                <Submit
+                    className="bg-indigo-500 hover:bg-indigo-700 transition-all text-white p-2 rounded-sm"
+                >
+                    Comprar
+                </Submit>
             </Modal> 
         }
     </article>

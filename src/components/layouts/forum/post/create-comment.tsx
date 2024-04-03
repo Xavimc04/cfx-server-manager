@@ -5,6 +5,7 @@ import { SendAndArchiveOutlined } from "@mui/icons-material";
 import { AnimatePresence, motion } from "framer-motion";
 import { useSession } from "next-auth/react";  
 import { useFormState } from "react-dom";
+import Submit from "../../submit";
 
 export default function CreateComment({
     postId
@@ -51,12 +52,11 @@ export default function CreateComment({
                     name="content" 
                 />
 
-                <button 
-                    type="submit"
+                <Submit
                     className="bg-indigo-300 border border-indigo-500 text-indigo-500 p-2 rounded-md hover:bg-indigo-500 hover:text-indigo-300 transition-all duration-300"
                 >
                     <SendAndArchiveOutlined />
-                </button>
+                </Submit>
             </form>
         </motion.section>
     </AnimatePresence>

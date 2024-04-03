@@ -16,7 +16,7 @@ export default async function Payments() {
             Aquí puedes ver todas tus compras realizadas
         </p>
 
-        <div className="relative overflow-x-auto mt-5">
+        <div className="relative overflow-x-auto mt-5 -z-10">
                 <table className="w-full text-sm text-left text-white rounded">
                     <thead className="text-xs text-zinc-900 uppercase bg-zinc-800 rounded font-extralight">
                         <tr>
@@ -56,7 +56,7 @@ export default async function Payments() {
 
                                     <td className="px-6 py-4 text-ellipsis truncate">
                                         <span className={ cn('lowercase px-2 py-1 rounded border', purchase.status == 'pending' ? 'bg-blue-500/10 border-blue-500 text-blue-500' : 'bg-green-500/20 border-green-500 text-green-500') }>
-                                            { purchase.status == 'pending' ? 'pendiente' : 'reclamado' }
+                                            { purchase.status == 'pending' ? 'disponible' : 'reclamado' }
                                         </span>
                                     </td>
 
