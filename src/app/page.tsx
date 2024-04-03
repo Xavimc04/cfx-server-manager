@@ -1,3 +1,4 @@
+import Footer from "@/components/layouts/footer";
 import { Fragment } from "react";
 
 export default function Page() {
@@ -31,5 +32,7 @@ export default function Page() {
             <div className="h-20 w-screen absolute top-0 bg-gradient-to-b from-zinc-900"></div>
             <div className="h-20 w-screen absolute bottom-0 bg-gradient-to-t from-zinc-900"></div>
         </section>
+
+        <Footer />
     </Fragment>
 }

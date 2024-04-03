@@ -4,8 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/twMerge";
 import { SessionProvider } from "next-auth/react";
 import Image from "next/image";
-import Navigator from "@/components/layouts/navigator";
-import Footer from "@/components/layouts/footer";
+import Navigator from "@/components/layouts/navigator"; 
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,7 +24,7 @@ export default function RootLayout({
     return (
         <html lang="es">
             <body className={ cn(inter.className, 'min-h-screen min-w-screen bg-zinc-900 text-white') }>
-                <main className="min-h-screen flex flex-col gap-10 mb-10">
+                <main className="min-h-screen flex flex-col gap-10">
                     <SessionProvider>  
                         <section className="relative h-80 bg-gradient-to-b flex flex-col from-transparent via-30% to-zinc-900 to-95%">
                             <Image 
@@ -41,9 +40,7 @@ export default function RootLayout({
 
                         { children }
                     </SessionProvider>
-                </main> 
-
-                <Footer />
+                </main>  
             </body>
         </html>
     );
