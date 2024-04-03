@@ -6,6 +6,7 @@ import { SessionProvider } from "next-auth/react";
 import Image from "next/image";
 import Navigator from "@/components/layouts/navigator"; 
 import Loader from "@/components/ui/loader";
+import { Suspense } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,7 +26,9 @@ export default function RootLayout({
     return (
         <html lang="es">
             <body className={ cn(inter.className, 'min-h-screen min-w-screen bg-zinc-900 text-white') }>
-                <Loader />
+                <Suspense>
+                    <Loader />
+                </Suspense>
                 
                 <main className="min-h-screen flex flex-col gap-10">
                     <SessionProvider>  
