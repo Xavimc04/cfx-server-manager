@@ -5,6 +5,7 @@ import { cn } from "@/lib/twMerge";
 import { SessionProvider } from "next-auth/react";
 import Image from "next/image";
 import Navigator from "@/components/layouts/navigator";
+import Footer from "@/components/layouts/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -41,6 +42,8 @@ export default function RootLayout({
                         { children }
                     </SessionProvider>
                 </main> 
+
+                <Footer />
             </body>
         </html>
     );
