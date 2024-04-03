@@ -5,7 +5,8 @@ import { DEFAULT_PAYMENT_AMOUNT } from "@/lib/constants";
 import { auth } from "@/auth";
 import { Session } from "next-auth";
 import prisma from "@/lib/prisma";
-import logger from "@/lib/logger";
+import logger, { throwLoggerInfo } from "@/lib/logger";
+import throwLoggerError from "@/lib/logger";
 
 export async function POST(req: Request) {
     const session: Session | null = await auth();
@@ -99,7 +100,7 @@ export async function PUT(req: Request) {
         })
 
         if(!updated) {
-            if(process.env.ENABLE_SYSTEM_LOGS) logger.error(session.user.name + " - Attempted to update payment with orderId: " + orderId + " but failed.")
+            throwLoggerError(session.user.name + " - Attempted to update payment with orderId: " + orderId + " but failed.")
 
             return NextResponse.json({
                 error: "Payment not updated"
@@ -125,14 +126,14 @@ export async function PUT(req: Request) {
         })
 
         if(!increasedBalance) {
-            if(process.env.ENABLE_SYSTEM_LOGS) logger.error(session.user.name + " - Attempted to update balance for user with id: " + session.user.id + " but failed.")
+            throwLoggerError(session.user.name + " - Attempted to update balance for user with id: " + session.user.id + " but failed.")
 
             return NextResponse.json({
                 error: "Balance not updated"
             }, { status: 500 })
         }
 
-        if(process.env.ENABLE_SYSTEM_LOGS) logger.info(session.user.name + " - Payment with orderId: " + orderId + " completed successfully.")
+        throwLoggerInfo(session.user.name + " - Payment with orderId: " + orderId + " completed successfully.")
 
         return NextResponse.json({
             message: "Payment complete!"

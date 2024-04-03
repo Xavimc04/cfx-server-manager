@@ -5,7 +5,7 @@ import prisma from "./prisma";
 import { PostQuery } from "@/types/forum/_types";
 import { POST_PER_PAGE } from "./constants";
 import { revalidatePath } from "next/cache";
-import logger from "./logger";
+import { throwLoggerInfo } from "./logger";
 
 export async function registerForumPost(prevState: any, data: FormData) {
     try {
@@ -349,7 +349,7 @@ export async function buyProduct(prevState: any, data: FormData) {
             }
         });
 
-        if(process.env.ENABLE_SYSTEM_LOGS) logger.info(`User ${user.name} bought product ${product.title}`);
+        throwLoggerInfo(`User ${user.name} bought product ${product.title}`);
     
         revalidatePath("/store");
     
