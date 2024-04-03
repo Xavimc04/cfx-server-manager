@@ -4,8 +4,10 @@ import path from 'path';
 
 const logsDir = path.join(process.cwd(), 'logs');
 
-if (!fs.existsSync(logsDir) && process.env.ENABLE_SYSTEM_LOGS) {
-    fs.mkdirSync(logsDir);
+if(isLoggerEnabled()) {
+    if (!fs.existsSync(logsDir)) {
+        fs.mkdirSync(logsDir);
+    }
 }
 
 const logFormat = format.printf(({ level, message, timestamp }) => {
