@@ -45,7 +45,7 @@ export default function Modal({
                         transition={{ duration: 0.3 }}
                         exit={{ opacity: 0, scale: 0.5 }}
                         action={ action }
-                        className="flex flex-col gap-3 bg-zinc-800 p-4 rounded-md shadow-lg md:w-1/3" 
+                        className="flex flex-col gap-3 bg-zinc-800 p-4 rounded-md shadow-lg w-3/4 md:w-1/3" 
                         onClick={(e) => e.stopPropagation()}
                     >
                         <h2 className="text-2xl poppins">
