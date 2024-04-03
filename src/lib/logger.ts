@@ -4,7 +4,7 @@ import path from 'path';
 
 const logsDir = path.join(process.cwd(), 'logs');
 
-if (!fs.existsSync(logsDir)) {
+if (!fs.existsSync(logsDir) && process.env.ENABLE_SYSTEM_LOGS) {
     fs.mkdirSync(logsDir);
 }
 
