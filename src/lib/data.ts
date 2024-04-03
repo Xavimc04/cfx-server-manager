@@ -349,7 +349,7 @@ export async function buyProduct(prevState: any, data: FormData) {
             }
         });
 
-        logger.info(`User ${user.name} bought product ${product.title}`);
+        if(process.env.ENABLE_SYSTEM_LOGS) logger.info(`User ${user.name} bought product ${product.title}`);
     
         revalidatePath("/store");
     

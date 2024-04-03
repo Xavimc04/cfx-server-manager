@@ -25,9 +25,13 @@ const logger = createLogger({
 });
 
 if (process.env.NODE_ENV !== 'production') {
-    logger.add(new transports.Console({
+    if(process.env.ENABLE_SYSTEM_LOGS) logger.add(new transports.Console({
         format: format.simple()
     }));
+}
+
+export function isLoggerEnabled() {
+    return process.env.ENABLE_SYSTEM_LOGS || false;
 }
 
 export default logger;
