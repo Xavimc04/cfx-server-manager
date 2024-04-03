@@ -1,8 +1,13 @@
+import Image from "next/image";
+
 export default function Footer() {
-    return <footer className="text-white relative">
-        <img 
-            src="https://i.imgur.com/2GpvGch.png"
-            className="absolute bottom-0 w-[650px] -right-24 -z-10 object-cover hidden xl:block"
+    return <footer className="text-white relative"> 
+        <Image 
+            src="/images/footer-character.png"
+            alt="Character image"
+            className="absolute bottom-0 -right-24 -z-10 object-cover hidden xl:block"
+            width={650}
+            height={650}
         />
 
         <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
@@ -23,7 +28,7 @@ export default function Footer() {
             </div>
 
             <hr className="my-6 border-gray-600 sm:mx-auto lg:my-8" />
-            <span className="block text-sm text-white sm:text-center">© { new Date().getFullYear() } <a href="https://flowbite.com/" className="hover:underline">{ process.env.APP_NAME }</a>. Todos los derechos reservados.</span>
+            <span className="block text-sm text-white sm:text-center">© { new Date().getFullYear() } <a href="https://xaviermorell.es/" className="hover:underline">{ process.env.APP_NAME }</a>. Todos los derechos reservados.</span>
         </div> 
     </footer>
 }

@@ -1,4 +1,5 @@
 import Footer from "@/components/layouts/footer";
+import Image from "next/image";
 import { Fragment } from "react";
 
 export default function Page() {
@@ -20,13 +21,15 @@ export default function Page() {
         </section>
 
         {/* @ Background */}
-        <section className="h-screen -mt-36 relative -z-20">
-            <img 
-                src="https://images3.alphacoders.com/589/589031.jpg"
+        <section className="h-screen -mt-36 relative -z-20"> 
+            <Image
                 className="grayscale w-full h-full object-cover"
                 style={{
                     opacity: 0.03
                 }}
+                src="/images/landing-vehicle-wallpaper.jpg"
+                alt="Vehicle wallpaper"
+                layout="fill"
             />
 
             <div className="h-20 w-screen absolute top-0 bg-gradient-to-b from-zinc-900"></div>
