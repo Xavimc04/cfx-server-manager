@@ -39,6 +39,13 @@ npm install
 npm run dev
 ```
 
+## Third party integrations
+
+- Paypal
+- Next-Auth
+- Cloudinary
+- Prisma
+
 ## Working on features
 
 - Preview saved posts or filter by
