@@ -16,7 +16,7 @@ export default function CreateProductModal() {
 
     const { data: session } = useSession();
 
-    if (!session) return;
+    if (!session || !session.user?.id || !session.user.role || String(session.user.role) != 'ADMIN') return;
 
     return <Modal
         action={ dispatch }
