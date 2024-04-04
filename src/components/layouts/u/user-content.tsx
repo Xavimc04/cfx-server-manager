@@ -8,6 +8,8 @@ import QueryFilter from "../forum/query-filter";
 import { auth } from "@/auth"; 
 import Logout from "./logout";
 import Payments from "./payments";
+import Search from "../search";
+import CreatePostModal from "../forum/create-post-modal";
 
 export default async function UserContent({
     slug,
@@ -64,7 +66,11 @@ export default async function UserContent({
         </section>
 
         <section className="self-center flex items-center gap-4 w-full">
-            <QueryFilter />
+            <Search />
+
+            {
+                session?.user?.id && Number(session.user.id) === Number(user.id) && <CreatePostModal />
+            }
         </section>
 
         <Suspense

@@ -9,6 +9,7 @@ export const authConfig = {
                 session.user.email = token.email
                 session.user.name = token.name
                 session.user.image = token.image
+                session.user.role = token.role
             }
 
             return session; 
@@ -19,6 +20,7 @@ export const authConfig = {
                 token.email = user.email
                 token.name = user.name
                 token.image = user.image
+                token.role = user.role
             }
 
             return token
