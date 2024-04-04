@@ -69,7 +69,7 @@ export default async function UserContent({
             <Search />
 
             {
-                session?.user?.id && Number(session.user.id) === Number(user.id) && <CreatePostModal />
+                session?.user?.id && Number(session.user.id) == Number(user.id) && <CreatePostModal />
             }
         </section>
 

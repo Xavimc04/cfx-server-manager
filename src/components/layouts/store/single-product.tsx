@@ -7,6 +7,7 @@ import AddCardOutlinedIcon from '@mui/icons-material/AddCardOutlined';
 import { useSession } from "next-auth/react";
 import { useFormState } from "react-dom";
 import Submit from "../submit";
+import { Fragment } from "react";
 
 export default function SingleProduct({
     product
@@ -18,12 +19,12 @@ export default function SingleProduct({
 
     if (!session) return;
 
-    return <article className="border border-zinc-700 cursor-pointer select-none transition-all p-3 rounded flex items-center gap-4">
+    return <article className="border border-zinc-700 cursor-pointer select-none transition-all p-3 rounded flex flex-col text-center md:text-left md:flex-row flex-wrap items-center gap-10 md:gap-4">
         {/* @ Image */}
         <img 
             src={ product.image || '' }
             alt=''
-            className="w-20 h-20 object-cover rounded-sm"
+            className="h-48 md:w-20 md:h-20 object-cover rounded-sm"
         />
         
         {/* @ Information */}
@@ -32,11 +33,11 @@ export default function SingleProduct({
 
             <p className="text-xs text-gray-600">{ product.createdAt.toDateString() }</p>
 
-            <p className="text-md text-gray-400 mt-3">{ product.description }</p>
+            <p className="text-md text-gray-400 mt-3 px-10 md:px-0">{ product.description }</p>
         </section>
 
         {/* @ Stats */}
-        <section className="flex items-center text-3xl text-green-400 mr-3 gap-3 poppins"> 
+        <section className="flex items-center text-4xl md:text-3xl text-green-400 mr-3 gap-3 poppins"> 
             { product.price }€
         </section>
 
@@ -46,7 +47,13 @@ export default function SingleProduct({
                 title={ product.title }
                 description={ product.description }
                 content={
-                    <AddCardOutlinedIcon />
+                    <div className="flex items-center gap-4 px-10 md:px-0">
+                        <AddCardOutlinedIcon />
+
+                        <span className="block md:hidden">
+                            Comprar
+                        </span>
+                    </div>
                 }
             >
                 {
