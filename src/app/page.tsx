@@ -37,7 +37,10 @@ export default function Page() {
                     <p className="text-sm font-normal text-gray-500">Descarga e instala GTA V en tu PC.</p>
                 </div>
 
-                <a>
+                <a
+                    href="https://store.rockstargames.com/es/game/buy-gta-v"
+                    target="_blank"
+                >
                     <LinkOffOutlined />  
                 </a>
             </article>
@@ -46,35 +49,34 @@ export default function Page() {
             <article className="flex items-center gap-4 border border-zinc-800 p-4 rounded">
                 <Image
                     src="/images/gta-v-icon.png"
-                    alt="Download GTA V"
+                    alt="Install Fivem"
                     width={40}
                     height={40}
                 />
 
                 <div className="flex flex-col gap-2 flex-1">
-                    <h2 className="text-2xl poppins leading-none tracking-tight text-white">Descarga GTA V</h2>
-                    <p className="text-sm font-normal text-gray-500">Descarga e instala GTA V en tu PC.</p>
+                    <h2 className="text-2xl poppins leading-none tracking-tight text-white">Descarga el launcher de FiveM</h2>
+                    <p className="text-sm font-normal text-gray-500">Ejecuta el launcher de FiveM y abre la terminal con F8</p>
                 </div>
 
-                <a>
+                <a
+                    href="https://fivem.net/"
+                    target="_blank"
+                >
                     <LinkOffOutlined />  
                 </a>
             </article>
 
             {/* @ Connect to server */}
-            <article className="flex items-center bg-black gap-4 border border-zinc-800 p-4 rounded">
-                <div className="flex flex-col gap-4 flex-1">
-                    {/* @ Terminal  */}
-                    <section className="flex items-center gap-4">
-                        <div className="h-3 w-3 bg-red-500 rounded-full"></div>
-                        <div className="h-3 w-3 bg-yellow-500 rounded-full"></div>
-                        <div className="h-3 w-3 bg-green-500 rounded-full"></div>
-                    </section>
+            <article className="flex flex-col bg-black gap-4 border border-zinc-800 p-4 rounded">
+                {/* @ Terminal  */}
+                <section className="flex items-center gap-4">
+                    <div className="h-3 w-3 bg-red-500 rounded-full"></div>
+                    <div className="h-3 w-3 bg-yellow-500 rounded-full"></div>
+                    <div className="h-3 w-3 bg-green-500 rounded-full"></div>
+                </section>
 
-                    connect cfx.re/join/abc123
-                </div>
-
-                <CopyAllOutlined />
+                connect cfx.re/join/abc123
             </article>
         </section>
 
