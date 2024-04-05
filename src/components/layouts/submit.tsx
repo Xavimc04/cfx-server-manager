@@ -7,7 +7,7 @@ export default function Submit({
     className,
 } : {
     children: React.ReactNode,
-    className: string,
+    className?: string,
 }) {
     const status = useFormStatus();
 
