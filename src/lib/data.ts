@@ -371,3 +371,39 @@ export async function getUserPurchases(userId: number) {
         }
     });
 }
+
+export async function suscribeToNewsletter(prevState: any, data: FormData) {
+    try {
+        const email = data.get("email") as string;
+
+        if (!email) return "Por favor ingresa tu correo electrónico";
+
+        const emailSchema = z.object({
+            email: z.string()
+        });
+
+        const emailData = emailSchema.safeParse({
+            email
+        });
+
+        if (!emailData.success) return "Por favor ingresa un correo electrónico válido";
+
+        const alreadySuscribed = await prisma.newsletter.findFirst({
+            where: {
+                email: emailData.data.email
+            }
+        });
+
+        if (alreadySuscribed) return "Correo ya registrado";
+
+        await prisma.newsletter.create({
+            data: {
+                email: emailData.data.email
+            }
+        });
+
+        return "Correo registrado";
+    } catch (error) {
+        return "Error desconocido";
+    }
+}

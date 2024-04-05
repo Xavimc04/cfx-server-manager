@@ -169,3 +169,13 @@ model UserPurchases {
 
     @@map("user_purchases")
 }
+
+model Newsletter {
+    id        Int      @id @default(autoincrement())
+    email     String   @unique
+    subscribed Boolean  @default(true)
+
+    createdAt DateTime @default(now())
+
+    @@map("newsletter_emails")
+}

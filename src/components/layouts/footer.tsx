@@ -1,7 +1,5 @@
 import Image from "next/image";
-import Input from "../ui/input";
-import Submit from "./submit";
-import { EmailOutlined } from "@mui/icons-material";
+import Newsletter from "./newsletter";
 
 export default function Footer() {
     return <footer className="relative">
@@ -16,24 +14,7 @@ export default function Footer() {
         {/* @ Footer */}
         <section className="bg-black/20 p-7 text-sm flex flex-wrap justify-center relative">
             {/* @ Newsletter */}
-            <article className="w-full xl:w-2/3 2xl:w-1/2 flex flex-col gap-4 md:gap-0 md:flex-row items-center justify-between xl:absolute -top-10 bg-black p-4 border border-zinc-800 rounded">
-                <p className="text-white text-3xl poppins">
-                    Suscríbete a nuestra newsletter
-                </p>
-
-                <form className="flex gap-2">
-                    <Input 
-                        placeholder="Tu correo electrónico"
-                        className="bg-zinc-900"
-                    />
-
-                    <Submit
-                        className="bg-indigo-300 border border-indigo-500 text-indigo-500 p-2 rounded-md hover:bg-indigo-500 hover:text-indigo-300 transition-all duration-300"
-                    >
-                        <EmailOutlined />
-                    </Submit>
-                </form>
-            </article>
+            <Newsletter />
 
             <div className="w-full xl:w-1/2 flex flex-col gap-10 md:gap-0 text-center md:text-left md:flex-row items-center md:items-start justify-between mt-10">
                 {/* @ Information */}
