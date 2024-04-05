@@ -8,15 +8,15 @@ export default function Footer() {
         <Image 
             src="/images/radio_character.png"
             alt="Character image"
-            className="absolute bottom-0 right-10 z-10 object-cover hidden xl:block"
+            className="absolute bottom-0 right-10 z-10 object-cover hidden 2xl:block"
             width={350}
             height={650}
         />
 
         {/* @ Footer */}
-        <section className="bg-black/20 p-7 text-sm flex justify-center relative">
+        <section className="bg-black/20 p-7 text-sm flex flex-wrap justify-center relative">
             {/* @ Newsletter */}
-            <article className="w-1/2 flex items-center justify-between absolute -top-10 bg-black p-4 border border-zinc-800 rounded">
+            <article className="w-full xl:w-2/3 2xl:w-1/2 flex flex-col gap-4 md:gap-0 md:flex-row items-center justify-between xl:absolute -top-10 bg-black p-4 border border-zinc-800 rounded">
                 <p className="text-white text-3xl poppins">
                     Suscríbete a nuestra newsletter
                 </p>
@@ -35,9 +35,9 @@ export default function Footer() {
                 </form>
             </article>
 
-            <div className="w-1/2 flex items-start justify-between mt-10">
+            <div className="w-full xl:w-1/2 flex flex-col gap-10 md:gap-0 text-center md:text-left md:flex-row items-center md:items-start justify-between mt-10">
                 {/* @ Information */}
-                <article className="flex flex-col gap-2 w-1/3">
+                <article className="flex flex-col gap-2 w-full md:w-1/3">
                     <p className="text-white text-3xl poppins">
                         Nuestras redes
                     </p>
@@ -80,7 +80,7 @@ export default function Footer() {
                 </article>
 
                 {/* @ Resources */}
-                <article className="w-1/3 text-right justify-self-end flex flex-col gap-2">
+                <article className="w-full md:w-1/3 text-center md:text-right justify-self-end flex flex-col gap-2">
                     <p className="text-white text-3xl poppins">
                         Recursos
                     </p>
@@ -101,7 +101,7 @@ export default function Footer() {
 
         {/* @ Rights reserved */}
         <section className="bg-black p-7 text-sm flex justify-center">
-            <article className="w-1/2 flex items-center justify-between">
+            <article className="w-full xl:w-1/2 flex flex-col gap-4 lg:gap-0 lg:flex-row items-center justify-between">
                 <p>
                     { process.env.APP_NAME } &copy; { new Date().getFullYear() }, Todos los derechos reservados.
                 </p>
