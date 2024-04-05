@@ -51,7 +51,7 @@ npm run dev
 - Preview saved posts or filter by
 - Get payment code and use it ingame
 - Lua script to use it ingame
-- Landing page content
+- Newsletter suscription
 
 ## Bugs
 
