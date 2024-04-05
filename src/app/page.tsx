@@ -22,7 +22,7 @@ export default function Page() {
         </section>
 
         {/* @ How to play */}
-        <section className="z-20 w-1/2 flex flex-col gap-7 self-center my-20">
+        <section className="z-20 px-5 w-full lg:px-0 lg:w-1/2 xl:w-2/4 flex flex-col gap-7 self-center my-20">
             {/* @ Download GTA V */}
             <article className="flex items-center gap-4 border border-zinc-800 p-4 rounded">
                 <Image
@@ -79,7 +79,7 @@ export default function Page() {
         </section>
 
         {/* @ Background */}
-        <section className="h-screen -mt-80 relative -z-20 flex flex-col items-center justify-center"> 
+        <section className="h-screen xl:-mt-80 relative -z-20 flex flex-col items-center justify-center"> 
             <Image
                 className="grayscale w-full h-full object-cover"
                 style={{
@@ -94,8 +94,8 @@ export default function Page() {
             <div className="h-20 w-screen absolute bottom-0 bg-gradient-to-t from-zinc-900"></div>
 
             {/* @ Adventure section */}
-            <section className="z-20 w-1/2 self-center flex items-center justify-between mt-40">
-                <article className="w-1/2 flex items-start flex-col gap-7">
+            <section className="z-20 w-full gap-32 xl:gap-0 lg:w-1/2 self-center flex flex-col xl:flex-row items-center justify-between mt-40">
+                <article className="w-full px-5 xl:w-1/2 flex items-start flex-col gap-7">
                     <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-6xl">
                         ¿Estás listo para tu próxima
                         
