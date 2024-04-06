@@ -17,8 +17,6 @@ export default function SingleProduct({
     const [state, dispatch] = useFormState(buyProduct, undefined);
     const { data: session } = useSession();
 
-    if (!session) return;
-
     return <article className="border border-zinc-700 cursor-pointer select-none transition-all p-3 rounded flex flex-col text-center md:text-left md:flex-row flex-wrap items-center gap-10 md:gap-4">
         {/* @ Image */}
         <img 
