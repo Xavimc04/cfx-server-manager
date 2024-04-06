@@ -1,5 +1,33 @@
 import prisma from "@/lib/prisma";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+
+export async function GET(req: NextRequest) {
+    const url = new URL(req.url); 
+    const code = url.searchParams.get("code");
+
+    if(!code) return NextResponse.json({
+        error: "Invalid request"
+    }, { status: 400 })
+
+    const doesCodeExist = await prisma.userPurchases.findFirst({
+        where: {
+            code: code
+        },
+        select: {
+            code: true, 
+            status: true,
+            createdAt: true
+        }
+    })
+
+    if(!doesCodeExist) return NextResponse.json({
+        error: "Invalid code"
+    }, { status: 400 })
+
+    return NextResponse.json({
+        code: doesCodeExist
+    }, { status: 200 })
+}
 
 export async function POST(req: Request) {
     try {
