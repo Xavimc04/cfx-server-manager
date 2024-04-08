@@ -46,10 +46,9 @@ npm run dev
 - Cloudinary
 - Prisma
 
-## Bugs
+## Working on
 
-- Close modals on create items
-- Action done does not close modals
+- Product items configure ingame reward
 
 ## Author
 
