@@ -46,11 +46,6 @@ npm run dev
 - Cloudinary
 - Prisma
 
-## Working on features
-
-- Preview saved posts or filter by
-- Lua script to use it ingame
-
 ## Bugs
 
 - Close modals on create items

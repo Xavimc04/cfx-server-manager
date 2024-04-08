@@ -5,9 +5,17 @@ import Input from "../ui/input";
 import Submit from "./submit";
 import { useFormState } from "react-dom";
 import { suscribeToNewsletter } from "@/lib/data";
+import { useRef } from "react";
 
 export default function Newsletter() {
     const [state, dispatch] = useFormState(suscribeToNewsletter, undefined)
+    const ref = useRef<HTMLFormElement>(null)
+
+    const submit = async (formData: FormData) => {
+        await dispatch(formData)
+
+        ref.current?.reset()
+    }
 
     return <article className="w-full xl:w-2/3 2xl:w-1/2 flex flex-col gap-4 md:gap-0 md:flex-row items-center justify-between xl:absolute -top-10 bg-black p-4 border border-zinc-800 rounded">
         <div className="flex flex-col gap-2">
@@ -28,7 +36,8 @@ export default function Newsletter() {
 
         <form
             className="flex gap-2"
-            action={ dispatch }
+            action={ submit }
+            ref={ ref }
         >
             <Input 
                 placeholder="Tu correo electrónico"
