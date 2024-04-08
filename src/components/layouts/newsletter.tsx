@@ -18,11 +18,11 @@ export default function Newsletter() {
             {
                 state && state == 'Correo registrado' ? <p className="text-green-500">
                     Correo suscrito a nuestras noticias
-                </p> : <p
+                </p> : state ?  <p
                     className="text-red-500"
                 >
                     * { state }
-                </p>
+                </p> : null
             }
         </div>
 
