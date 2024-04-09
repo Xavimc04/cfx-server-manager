@@ -35,15 +35,23 @@ export async function POST(req: Request) {
 
         const {
             discordId, 
-            code 
+            code, 
+            secret
         } : {
             discordId: string,
-            code: string
+            code: string,
+            secret: string
         } = data; 
 
-        if(!data || !discordId || !code) return NextResponse.json({
+        if(!data || !discordId || !code || !secret) return NextResponse.json({
             error: "Invalid request"
         }, { status: 400 })
+
+        // @ Validate secret
+        if(!process.env.REDEEM_SERVER_SECRET || secret !== process.env.REDEEM_SERVER_SECRET) return NextResponse.json({
+            error: "Unauthorized",
+            message: "Invalid secret key"
+        }, { status: 401 })
 
         // @ Validate code existence
         const doesCodeExist = await prisma.userPurchases.findFirst({
