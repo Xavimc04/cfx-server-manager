@@ -258,19 +258,23 @@ export async function registerStoreProduct(prevState: any, data: FormData) {
         const description = data.get("description") as string;
         const price = Number(data.get("price"));
         const imageUrl = data.get("image") as string;
+        const ingameCategory = data.get("ingame_category") as string;
+        const ingameValue = data.get("ingame_value") as string;
 
-        if (!authorId || !title || !description || !price || !imageUrl) return "Todos los campos deben ser completados";
+        if (!authorId || !title || !description || !price || !imageUrl || !ingameCategory || !ingameValue) return "Todos los campos deben ser completados";
 
         const postSchema = z.object({
             authorId: z.number(),
             title: z.string(),
             description: z.string(),
             price: z.number(),
-            imageUrl: z.string()
+            imageUrl: z.string(),
+            ingameCategory: z.string(),
+            ingameValue: z.string()
         });
     
         const post = postSchema.safeParse({
-            authorId, title, description, price, imageUrl
+            authorId, title, description, price, imageUrl, ingameCategory, ingameValue
         });
     
         if (!post.success) return "Todos los campos deben ser completados";
@@ -281,7 +285,9 @@ export async function registerStoreProduct(prevState: any, data: FormData) {
                 title: post.data.title,
                 description: post.data.description,
                 price: post.data.price,
-                image: post.data.imageUrl
+                image: post.data.imageUrl,
+                ig_category: post.data.ingameCategory,
+                ig_value: post.data.ingameValue
             }
         })
 

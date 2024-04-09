@@ -55,6 +55,30 @@ export default function CreateProductModal() {
             <Input name="price" placeholder="5.00" type="number" />
         </Label>
 
+        <Label
+            label="Categoria"
+            htmlFor="ingame_category"
+            required
+        >
+            <select
+                name="ingame_category"
+                className="px-4 text-sm py-3 flex items-center gap-3 rounded-lg placeholder:text-gray-600 focus:outline-none focus:ring-0 bg-black/30 border border-gray-600 transition-all focus:border-indigo-500"
+            >
+                <option value=""></option>
+                <option value="money">Dinero en banco</option>
+                <option value="vip">Moneda VIP</option>
+                <option value="weapon">Arma</option>
+            </select>
+        </Label>
+
+        <Label
+            label="Valor ingame"
+            htmlFor="ingame_value"
+            required
+        >
+            <Input name="ingame_value" placeholder="weapon_pistol, weapon_shotgun, 3 (monedas vip o efectivo)" />
+        </Label>
+
         <input
             name="image"
             className="hidden"

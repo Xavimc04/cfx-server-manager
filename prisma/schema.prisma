@@ -145,6 +145,9 @@ model Product {
     price       Float
     image       String
 
+    ig_category String
+    ig_value    String
+
     author      User     @relation(fields: [authorId], references: [id])
     purchases   UserPurchases[]
 
