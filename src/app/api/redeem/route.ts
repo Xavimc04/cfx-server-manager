@@ -96,7 +96,9 @@ export async function POST(req: Request) {
         }, { status: 500 })
 
         return NextResponse.json({
-            success: true
+            code: updateCode,
+            success: true,
+            message: "Code successfully claimed"
         }, { status: 200 })
     } catch (error : Error | any) {
         return NextResponse.json({
