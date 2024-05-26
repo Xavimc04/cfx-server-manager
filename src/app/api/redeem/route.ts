@@ -86,6 +86,9 @@ export async function POST(req: Request) {
                 id: doesCodeExist.id,
                 code: code
             },
+            include: {
+                product: true
+            },
             data: {
                 status: "claimed"
             }
